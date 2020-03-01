@@ -1,7 +1,7 @@
 import React from "react";
 import "./Navbar.css";
-import logo from "../assets/images/cupid.png";
-import movie from "../assets/wedding.mp4";
+// import logo from "../assets/images/cupid.png";
+import movie from "../assets/wed.mp4";
 export const Navbar = () => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
@@ -12,7 +12,7 @@ export const Navbar = () => {
         <div className="container">
           {/* <!-- Brand --> */}
           <div>
-            <img alt="logo" src={logo} />
+            <img alt="logo" />
           </div>
 
           <button
