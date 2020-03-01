@@ -74,7 +74,10 @@ export const Navbar = () => {
         {/* <!--First slide--> */}
         <div className="carousel-item active">
           <div className="view">
-            <h1 className="text">Be Our Guest!! </h1>
+            <h1 className="text">
+              Be Our Guest!! <br />
+              this can be a search bar{" "}
+            </h1>
             {/* <!--Video source--> */}
             <video src={movie} className="video-intro" autoPlay loop muted />
           </div>
