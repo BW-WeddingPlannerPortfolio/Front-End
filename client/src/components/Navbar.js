@@ -2,10 +2,13 @@ import React from "react";
 import "./Navbar.css";
 import logo from "../assets/images/logo.png";
 import movie from "../assets/wed.mp4";
+import { connect } from "react-redux";
+
 export const Navbar = () => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
+  console.log();
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
@@ -81,4 +84,8 @@ export const Navbar = () => {
   );
 };
 
-export default Navbar;
+const MSTP = state => {
+  console.log(state);
+};
+
+export default connect(MSTP, {})(Navbar);
