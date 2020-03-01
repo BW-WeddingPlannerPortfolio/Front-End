@@ -1,6 +1,6 @@
 import React from "react";
 import "./Navbar.css";
-// import logo from "../assets/images/cupid.png";
+import logo from "../assets/images/logo.png";
 import movie from "../assets/wed.mp4";
 export const Navbar = () => {
   window.$ = window.jQuery = require("jquery");
@@ -12,7 +12,7 @@ export const Navbar = () => {
         <div className="container">
           {/* <!-- Brand --> */}
           <div>
-            <img alt="logo" />
+            <img alt="logo" src={logo} />
           </div>
 
           <button
