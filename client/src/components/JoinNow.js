@@ -146,7 +146,5 @@ const StyledForm = styled(Form)`
   margin:30px;
   padding: 10px;
   font-size: 20px;
-  z-index: 1;
-  background-color: white;
-  opacity: 0.5;
+  
 `;

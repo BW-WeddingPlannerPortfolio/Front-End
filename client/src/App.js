@@ -3,7 +3,9 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 //import {Cloudinary} from "./components/Cloudinary";
 import { Route} from "react-router-dom";
-import JoinNow from "./components/JoinNow";
+//import FormikJoinNowForm from "./components/JoinNow";
+import JoinNowModal from "./components/JoinNowModal";
+
 
 function App() {
   return (
@@ -11,7 +13,7 @@ function App() {
       <Navbar />
      
       <Route path ="/Join">
-       <JoinNow/>
+       <JoinNowModal/>
        </Route>
     </div>
    
