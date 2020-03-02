@@ -13,7 +13,6 @@ export const Navbar = () => {
   const dispatch = useDispatch();
 
   console.log(state);
-  console.log(state.loading);
 
   return (
     <div>
