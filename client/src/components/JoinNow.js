@@ -65,14 +65,14 @@ const JoinNow = ({ values, touched, errors, status }) => {
         </label>
 
         <label htmlFor="type">
-          Which are you?
+          You are a ...?
           <Field
             component="select"
             className="type-select"
             id="type"
             type="dropdown"
             name="type"
-            placeholder="Which are you?"
+            placeholder="You are a ...?"
           >
             <option disabled>Choose an option</option>
             <option value="Bride">Bride</option>
