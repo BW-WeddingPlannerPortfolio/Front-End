@@ -7,7 +7,7 @@ export const DATA_FAILURE = "DATA_FAILURE";
 export const getData = () => dispatch => {
   dispatch({ type: DATA_START });
   axiosWithAuth()
-    .get("")
+    .get(" /api/weddings")
     .then(res => {
       console.log(res);
       dispatch({ type: DATA_SUCCESS, payload: res });
