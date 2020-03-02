@@ -3,12 +3,18 @@ import "./Navbar.css";
 import logo from "../assets/images/logo.png";
 import movie from "../assets/wed.mp4";
 import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const Navbar = () => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
-  console.log();
+  const state = useSelector(state => state);
+  const dispatch = useDispatch();
+
+  console.log(state);
+  console.log(state.loading);
+
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
@@ -87,8 +93,4 @@ export const Navbar = () => {
   );
 };
 
-const MSTP = state => {
-  console.log(state);
-};
-
-export default connect(MSTP, {})(Navbar);
+export default Navbar;
