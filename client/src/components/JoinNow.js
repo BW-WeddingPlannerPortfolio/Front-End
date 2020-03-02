@@ -14,7 +14,7 @@ const JoinNow = ({ values, touched, errors, status }) => {
 
   return (
     <div className="signin-form">
-      <StyledForm>
+      <StyledForm className="text">
         <label htmlFor="name">
           {" "}
           Name
