@@ -2,9 +2,7 @@ import Axios from "axios";
 
 export const axiosWithAuth = () => {
   return Axios.create({
-    baseURL: {
-      /*NEED URL*/
-    },
+    baseURL: "https://wedding-planner-portfolio.herokuapp.com",
     headers: {
       Authorization: localStorage.getItem("token")
     }

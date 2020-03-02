@@ -1,7 +1,17 @@
 import { DATA_START, DATA_SUCCESS, DATA_FAILURE } from "../actions";
 
 const initialState = {
-  loading: false
+  loggedin: false,
+  planner: {
+    wedding_name: "",
+    wedding_photo: "",
+    theme: "",
+    wedding_location: "",
+    description: ""
+  },
+  isloading: false,
+  data: [],
+  error: {}
 };
 
 export const reducer = (state = initialState, action) => {
@@ -23,5 +33,7 @@ export const reducer = (state = initialState, action) => {
         loading: false,
         data: action.payload
       };
+    default:
+      return state;
   }
 };
