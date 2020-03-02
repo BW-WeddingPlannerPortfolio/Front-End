@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import styled from "styled-components";
 
 const JoinNow = ({ values, touched, errors, status }) => {
   const [people, setPeople] = useState([]);
@@ -13,7 +14,7 @@ const JoinNow = ({ values, touched, errors, status }) => {
 
   return (
     <div className="signin-form">
-      <Form>
+      <StyledForm>
         <label htmlFor="name">
           {" "}
           Name
@@ -27,16 +28,16 @@ const JoinNow = ({ values, touched, errors, status }) => {
             <p className="errors">{errors.name}</p>
           )}
         </label>
-        <label htmlFor="username">
+        <label htmlFor="location">
           {" "}
-          Username
+          Location
           <Field 
-          id="username" 
-          type="text" 
-          name="username" 
-          placeholder="Username" />
-          {touched.username && errors.username && (
-            <p className="errors">{errors.username}</p>
+          id="location" 
+          type="location" 
+          name="location" 
+          placeholder="Location" />
+          {touched.location && errors.location && (
+            <p className="errors">{errors.location}</p>
           )}
         </label>
         <label htmlFor="password">
@@ -99,26 +100,17 @@ const JoinNow = ({ values, touched, errors, status }) => {
         </label>
        
         <button type="submit">Submit!</button>
-      </Form>
-      <pre>{JSON.stringify(values, null, 2)}</pre>
-      {people.map(person => (
-        <ul key={person.id}>
-          <li>Name: {person.name}</li>
-          <li>Username: {person.username}</li>
-          <li>Password: {person.password}</li>
-          <li>Email: {person.email}</li>
-          <li>Type: {person.type}</li>
-        </ul>
-      ))}
+      </StyledForm>
+     
     </div>
   );
 };
 
 const FormikJoinNowForm = withFormik({
-  mapPropsToValues({ name, username, password, email, type, terms }) {
+  mapPropsToValues({ name, location, password, email, type, terms }) {
     return {
       name: name || "",
-      username: username || "",
+      location: location || "",
       password: password || "",
       email: email || "",
       type: type || "",
@@ -127,7 +119,7 @@ const FormikJoinNowForm = withFormik({
   },
   validationSchema: Yup.object().shape({
     name: Yup.string().required(),
-    username: Yup.string().required(),
+    location: Yup.string().required(),
     password: Yup.string().required(),
     email: Yup.string().required(),
     type: Yup.string().required(),
@@ -144,3 +136,17 @@ const FormikJoinNowForm = withFormik({
 })(JoinNow);
 
 export default FormikJoinNowForm;
+
+
+const StyledForm = styled(Form)`
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  margin:30px;
+  padding: 10px;
+  font-size: 20px;
+  z-index: 1;
+  background-color: white;
+  opacity: 0.5;
+`;
