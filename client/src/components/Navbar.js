@@ -2,6 +2,8 @@ import React from "react";
 import "./Navbar.css";
 import logo from "../assets/images/logo.png";
 import movie from "../assets/wed.mp4";
+import JoinNow from "./JoinNow";
+
 export const Navbar = () => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
@@ -55,7 +57,7 @@ export const Navbar = () => {
 
               <li className="nav-item">
                 <a className="nav-link border border-light rounded">
-                  <i className="fab fa-github mr-2"></i>Join Now
+  <i className="fab fa-github mr-2">{JoinNow}</i>Join Now
                 </a>
               </li>
             </ul>
