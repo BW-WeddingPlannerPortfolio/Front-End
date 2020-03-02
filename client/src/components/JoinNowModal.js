@@ -11,7 +11,7 @@ function JoinNowModal() {
     const handleShow = () => setShow(true);
   
     return (
-      <>
+      <div>
         <Button variant="primary" onClick={handleShow}>
           Submit
         </Button>
@@ -28,11 +28,11 @@ function JoinNowModal() {
               Close
             </Button>
             <Button variant="primary" onClick={handleClose}>
-              Save Changes
+              Login
             </Button>
           </Modal.Footer>
         </Modal>
-      </>
+      </div>
     );
 }
   

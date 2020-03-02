@@ -5,6 +5,8 @@ import movie from "../assets/wed.mp4";
 //import JoinNow from "./JoinNow";
 import { Link} from "react-router-dom";
 
+import {Button} from "./JoinNowModal";
+
 export const Navbar = () => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
@@ -55,11 +57,11 @@ export const Navbar = () => {
               <li className="nav-item">
                 <a className="nav-link">Login</a>
               </li>
-            
+             
               <li className="nav-item">
-                <Link to ="/Join" className="nav-link border border-light rounded">
+                <Button variant ="primary" onClick={handleShow} className="nav-link border border-light rounded">
                 <i className="fab fa-github mr-2"></i>Join Now
-                </Link>
+                </Button>
               </li>
               
             </ul>
