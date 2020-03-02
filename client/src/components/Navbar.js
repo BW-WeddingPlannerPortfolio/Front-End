@@ -2,10 +2,18 @@ import React from "react";
 import "./Navbar.css";
 import logo from "../assets/images/logo.png";
 import movie from "../assets/wed.mp4";
+import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 export const Navbar = () => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
+  const state = useSelector(state => state);
+  const dispatch = useDispatch();
+
+  console.log(state);
+
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
@@ -71,7 +79,10 @@ export const Navbar = () => {
         {/* <!--First slide--> */}
         <div className="carousel-item active">
           <div className="view">
-            <h1 className="text">Be Our Guest!! </h1>
+            <h1 className="text">
+              Be Our Guest!! <br />
+              this can be a search bar{" "}
+            </h1>
             {/* <!--Video source--> */}
             <video src={movie} className="video-intro" autoPlay loop muted />
           </div>
