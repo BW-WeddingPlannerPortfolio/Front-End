@@ -1,17 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Navbar.css";
 import logo from "../assets/images/logo.png";
-import movie from "../assets/wed.mp4";
-import { NavLink } from "react-router-dom";
-import { Modal, Button } from "react-bootstrap";
 
-export const Navbar = () => {
+export const Home = () => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   return (
     <div>
@@ -20,9 +14,9 @@ export const Navbar = () => {
           {/* <!-- Brand --> */}
 
           <div>
-            <NavLink to="./">
+            {/* <NavLink to="./">
               <img alt="logo" src={logo} />
-            </NavLink>
+            </NavLink> */}
           </div>
 
           <button
@@ -42,9 +36,9 @@ export const Navbar = () => {
             {/* <!-- Left --> */}
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <NavLink to="./Home" className="nav-link">
+                {/* <NavLink to="./Home" className="nav-link">
                   Home
-                </NavLink>
+                </NavLink> */}
               </li>
               <li className="nav-item">
                 <a className="nav-link">Venues</a>
@@ -64,51 +58,14 @@ export const Navbar = () => {
               </li>
 
               <li className="nav-item">
-                <Button variant="primary" onClick={handleShow}>
+                {/* <Button variant="primary" onClick={handleShow}>
                   Submit
-                </Button>
+                </Button> */}
               </li>
             </ul>
           </div>
         </div>
       </nav>
-      {/* // <!-- Navbar --> */}
-
-      {/* // <!--Carousel Wrapper--> */}
-
-      {/* <!--Slides--> */}
-      <div className="carousel-inner" role="listbox">
-        {/* <!--First slide--> */}
-        <div className="carousel-item active">
-          <div className="view">
-            <h1 className="text">
-              Be Our Guest!! <br />
-              this can be a search bar{" "}
-            </h1>
-            {/* <!--Video source--> */}
-            <video src={movie} className="video-intro" autoPlay loop muted />
-          </div>
-        </div>
-      </div>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Join Now</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <h2>helolo</h2>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Login
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };
-
-export default Navbar;

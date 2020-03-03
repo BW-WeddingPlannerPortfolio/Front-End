@@ -18,12 +18,7 @@ const JoinNow = ({ values, touched, errors, status }) => {
         <label htmlFor="name">
           {" "}
           Name
-          <Field
-            id="name"
-            type="text"
-            name="name"
-            placeholder="Name"
-          />
+          <Field id="name" type="text" name="name" placeholder="Name" />
           {touched.name && errors.name && (
             <p className="errors">{errors.name}</p>
           )}
@@ -31,11 +26,12 @@ const JoinNow = ({ values, touched, errors, status }) => {
         <label htmlFor="location">
           {" "}
           Location
-          <Field 
-          id="location" 
-          type="location" 
-          name="location" 
-          placeholder="Location" />
+          <Field
+            id="location"
+            type="location"
+            name="location"
+            placeholder="Location"
+          />
           {touched.location && errors.location && (
             <p className="errors">{errors.location}</p>
           )}
@@ -43,11 +39,12 @@ const JoinNow = ({ values, touched, errors, status }) => {
         <label htmlFor="password">
           {" "}
           Password
-          <Field 
-          id="password" 
-          type="password" 
-          name="password" 
-          placeholder="Password" />
+          <Field
+            id="password"
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
           {touched.password && errors.password && (
             <p className="errors">{errors.password}</p>
           )}
@@ -55,11 +52,7 @@ const JoinNow = ({ values, touched, errors, status }) => {
         <label htmlFor="email">
           {" "}
           Email
-          <Field 
-          id="email" 
-          type="text" 
-          name="email" 
-          placeholder="Email" />
+          <Field id="email" type="text" name="email" placeholder="Email" />
           {touched.email && errors.email && (
             <p className="errors">{errors.email}</p>
           )}
@@ -84,7 +77,7 @@ const JoinNow = ({ values, touched, errors, status }) => {
             <p className="errors">{errors.type}</p>
           )}
         </label>
-       
+
         <label htmlFor="terms" className="checkbox-container">
           Terms and Conditions
           <Field
@@ -98,10 +91,9 @@ const JoinNow = ({ values, touched, errors, status }) => {
             <p className="errors">{errors.terms}</p>
           )}
         </label>
-       
+
         <button type="submit">Submit!</button>
       </StyledForm>
-     
     </div>
   );
 };
@@ -137,14 +129,12 @@ const FormikJoinNowForm = withFormik({
 
 export default FormikJoinNowForm;
 
-
 const StyledForm = styled(Form)`
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  margin:30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
   padding: 10px;
   font-size: 20px;
-  
 `;
