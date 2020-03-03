@@ -24,6 +24,7 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.0.1",
     "superagent": "^5.2.2",
+    "uuidv4": "^6.0.5",
     "yup": "^0.28.1"
   },
   "scripts": {
