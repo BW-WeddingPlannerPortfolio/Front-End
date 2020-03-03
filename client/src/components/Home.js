@@ -1,11 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Navbar.css";
-import logo from "../assets/images/logo.png";
+//import logo from "../assets/images/logo.png";
+import HomeCard from "./HomeCard";
+import dummydata from "./dummydata";
 
 export const Home = () => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
+
+  const [data] = useState(dummydata);
+
+
+  
 
   return (
     <div>
@@ -66,6 +73,14 @@ export const Home = () => {
           </div>
         </div>
       </nav>
+
+      <div>
+      {data.map(p => (
+        <HomeCard key={p.id} propsPassedFromParent={p} />
+      ))}
+      </div>
     </div>
+    
+
   );
 };
