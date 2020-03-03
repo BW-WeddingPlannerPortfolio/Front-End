@@ -1,6 +1,10 @@
 import { DATA_START, DATA_SUCCESS, DATA_FAILURE } from "../actions";
+const uuidv4 = require("uuid/v4");
+
+const setid = window.localStorage.getItem("CURRENTUSER");
 
 const initialState = {
+  currentuser: JSON.parse(setid) ?? { id: 3 },
   loggedin: false,
   wedding: {
     wedding_name: "",
@@ -32,6 +36,16 @@ export const reducer = (state = initialState, action) => {
         ...state,
         loading: false,
         data: action.payload
+      };
+    case "LOGGED_STATUS":
+      return {
+        ...state,
+        loggedin: action.payload
+      };
+    case "CURRENT_USER":
+      return {
+        ...state,
+        currentuser: action.payload
       };
     default:
       return state;
