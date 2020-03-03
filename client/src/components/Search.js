@@ -11,7 +11,6 @@ export const Search = ({ handleInput, query }) => {
         type="search"
         placeholder="Search..."
       />
-      <p>{query}</p>
     </form>
   );
 };

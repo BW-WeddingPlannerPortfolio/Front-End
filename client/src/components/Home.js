@@ -16,11 +16,9 @@ export const Home = () => {
 
   const dispatch = useDispatch();
   const wed = useSelector(state => state.data);
-  // console.log(wed);
-
   useEffect(() => {
     dispatch(getData());
-  }, [dispatch]);
+  }, []);
   //
   console.log(wed);
   const handleInput = e => {
@@ -32,9 +30,6 @@ export const Home = () => {
     });
     setPlanners(filtered);
   }, [query]);
-  // useEffect(() => {
-  //   setPlanners(wed.data);
-  // }, []);
   console.log(planners);
   return (
     <div>

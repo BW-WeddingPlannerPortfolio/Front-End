@@ -85,7 +85,7 @@ class Cloudinary extends React.Component {
             onChange={this.handleChange}
           />
           <h1>Upload Image</h1>
-          <div style={{ height: "150px" }}>
+          <div style={{ display: "flex", height: "50px" }}>
             <input
               type="file"
               filename="image"
@@ -95,7 +95,7 @@ class Cloudinary extends React.Component {
             {this.state.loading ? (
               ""
             ) : (
-              <img src={this.state.profile_pic} style={{ width: "150px" }} />
+              <img src={this.state.profile_pic} style={{ height: "50px" }} />
             )}
           </div>
           <div>
