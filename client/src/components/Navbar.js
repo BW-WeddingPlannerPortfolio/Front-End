@@ -2,8 +2,15 @@ import React from "react";
 import "./Navbar.css";
 import logo from "../assets/images/logo.png";
 import movie from "../assets/wed.mp4";
+
+//import JoinNow from "./JoinNow";
+import { Link} from "react-router-dom";
+
+import {Button} from "./JoinNowModal";
+
 import { connect } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
+
 
 export const Navbar = () => {
   window.$ = window.jQuery = require("jquery");
@@ -60,12 +67,13 @@ export const Navbar = () => {
               <li className="nav-item">
                 <a className="nav-link">Login</a>
               </li>
-
+             
               <li className="nav-item">
-                <a className="nav-link border border-light rounded">
-                  <i className="fab fa-github mr-2"></i>Join Now
-                </a>
+                <Button variant ="primary" onClick={handleShow} className="nav-link border border-light rounded">
+                <i className="fab fa-github mr-2"></i>Join Now
+                </Button>
               </li>
+              
             </ul>
           </div>
         </div>
