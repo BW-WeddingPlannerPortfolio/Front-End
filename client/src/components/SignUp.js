@@ -69,7 +69,7 @@ class Cloudinary extends React.Component {
     return (
       <div className="App">
         <form onSubmit={this.handleSubmit}>
-          <H1>Username
+          <H1>Username:
           <input
             type="text"
             name="username"
@@ -78,7 +78,7 @@ class Cloudinary extends React.Component {
             onChange={this.handleChange}
           />
           </H1>
-          <H1>Password
+          <H1>Password:
           <input
             type="password"
             name="password"
@@ -87,7 +87,7 @@ class Cloudinary extends React.Component {
             onChange={this.handleChange}
           />
           </H1>
-          <H1>Email
+          <H1>Email:
           <input
             type="email"
             name="email"
@@ -96,7 +96,7 @@ class Cloudinary extends React.Component {
             onChange={this.handleChange}
           />
           </H1>
-          <H1>Location
+          <H1>Location:
           <input
             type="location"
             name="home_location"
@@ -105,22 +105,24 @@ class Cloudinary extends React.Component {
             onChange={this.handleChange}
           />
           </H1>
-          <H1>Upload Image
-          {/* <div style={{ height: "150px" }}> */}
+          <H1>
+          Upload Image:
+          <div>
             <input
               type="file"
               filename="image"
               placeholder="Upload An Image"
               onChange={this.uploadImage}
             />
-            </H1>
+            
             {this.state.loading ? (
               ""
             ) : (
-              <img src={this.state.profile_pic} style={{ width: "150px" }} />
+              <img src={this.state.profile_pic} />
             )}
             
-          {/* </div> */}
+          </div>
+          </H1>
           
           <div>
             <Button>Submit</Button>

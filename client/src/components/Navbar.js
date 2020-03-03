@@ -99,7 +99,7 @@ export const Navbar = () => {
         <Modal.Header closeButton>
           <Modal.Title>JOIN NOW</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ height: "80vh" }}>
+        <Modal.Body style={{ height: "80vh", margin: "10px" }}>
           <Cloudinary />
         </Modal.Body>
       </Modal>
@@ -108,7 +108,7 @@ export const Navbar = () => {
         <Modal.Header closeButton>
           <Modal.Title>SIGN IN</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ height: "50vh" }}>
+        <Modal.Body style={{ height: "50vh", margin: "10px"}}>
           <Login />
         </Modal.Body>
       </Modal>
