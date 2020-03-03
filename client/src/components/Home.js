@@ -17,15 +17,15 @@ export const Home = () => {
   const wed = useSelector(state => state.data);
   const [planners, setPlanners] = useState([]);
   const [query, setQuery] = useState("");
-  console.log(wed);
-  console.log(planners);
+  // console.log(wed);
+  // console.log(planners);
   //
   useEffect(() => {
     dispatch(getData());
     setPlanners(wed);
   }, [dispatch]);
-  console.log(wed);
-  console.log(planners);
+  // console.log(wed);
+  // console.log(planners);
 
   useEffect(() => {
     var filtered = wed.filter(x => {
@@ -36,7 +36,7 @@ export const Home = () => {
   const handleInput = e => {
     setQuery(e.target.value);
   };
-  console.log(planners);
+  // console.log(planners);
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
@@ -108,7 +108,9 @@ export const Home = () => {
                 <Card.Body>
                   <Card.Title>{x.wedding_name}</Card.Title>
                   <Card.Text>{x.description}</Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+                  <NavLink to={`/${x.id}`}>
+                    <Button variant="primary">Go somewhere</Button>
+                  </NavLink>
                 </Card.Body>
               </Card>
             ))
