@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 import { getData } from "../actions";
 import { Search } from "./Search";
 import { useDispatch, useSelector } from "react-redux";
+import SinglePlanner from "./SinglePlanner";
 
 export const Home = () => {
   window.$ = window.jQuery = require("jquery");
@@ -109,7 +110,11 @@ export const Home = () => {
               <Card.Body>
                 <Card.Title>{x.wedding_name}</Card.Title>
                 <Card.Text>{x.description}</Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <NavLink to ={`/${x.id}`}>
+                  <Button>
+                  Planner
+                  </Button>
+                </NavLink>
               </Card.Body>
             </Card>
           ))}
