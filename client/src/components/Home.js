@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from "react";
-import "./Navbar.css";
-import logo from "../assets/images/logo.png";
-// import HomeCard from "./HomeCard";
-// import dummydata from "./dummydata";
-import {Card, Button} from "react-bootstrap";
 
+import React, { useState, useEffect } from "react";
+import { Card, Button } from "react-bootstrap";
+import "./Home.css";
+import logo from "../assets/images/logo.png";
+import { NavLink } from "react-router-dom";
+import { getData } from "../actions";
+import { useDispatch, useSelector } from "react-redux";
 
 export const Home = () => {
   window.$ = window.jQuery = require("jquery");
@@ -55,7 +56,9 @@ export const Home = () => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link">Venues</a>
+                <NavLink to="./Planners" className="nav-link">
+                  Wedding Planners
+                  </NavLink>
               </li>
               <li className="nav-item">
                 <a className="nav-link">Dresses</a>
