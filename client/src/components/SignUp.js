@@ -17,9 +17,10 @@ width: 55%;
 margin: auto;
 margin-left: 20%;
 `
+// import history from "./history";
+
 class Cloudinary extends React.Component {
   state = {
-    loading: true,
     username: "",
     password: "",
     profile_pic: "",
@@ -42,7 +43,6 @@ class Cloudinary extends React.Component {
     const file = await res.json();
     this.setState({
       ...this.state,
-      loading: false,
       profile_pic: file.secure_url
     });
   };
@@ -114,13 +114,7 @@ class Cloudinary extends React.Component {
               placeholder="Upload An Image"
               onChange={this.uploadImage}
             />
-            
-            {this.state.loading ? (
-              ""
-            ) : (
-              <img src={this.state.profile_pic} />
-            )}
-            
+            {<img src={this.state.profile_pic} style={{ height: "50px" }} />}
           </div>
           </H1>
           

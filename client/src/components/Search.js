@@ -7,7 +7,6 @@ export const Search = ({ handleInput, query }) => {
       <input
         value={query}
         onChange={handleInput}
-        className="inpt"
         type="search"
         placeholder="Search..."
       />

@@ -11,26 +11,32 @@ export const Home = () => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
-  const [planners, setPlanners] = useState([]);
-  const [query, setQuery] = useState("");
 
+  //
   const dispatch = useDispatch();
   const wed = useSelector(state => state.data);
+  const [planners, setPlanners] = useState([]);
+  const [query, setQuery] = useState("");
+  // console.log(wed);
+  // console.log(planners);
+  //
   useEffect(() => {
     dispatch(getData());
-  }, []);
-  //
-  console.log(wed);
-  const handleInput = e => {
-    setQuery(e.target.value);
-  };
+    setPlanners(wed);
+  }, [dispatch]);
+  // console.log(wed);
+  // console.log(planners);
+
   useEffect(() => {
     var filtered = wed.filter(x => {
       return x.wedding_name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
     });
     setPlanners(filtered);
   }, [query]);
-  console.log(planners);
+  const handleInput = e => {
+    setQuery(e.target.value);
+  };
+  // console.log(planners);
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
@@ -91,20 +97,26 @@ export const Home = () => {
             flexWrap: "wrap"
           }}
         >
-          {planners.map(x => (
-            <Card key={x.id} style={{ width: "18rem", margin: "1rem" }}>
-              <Card.Img
-                style={{ minHeight: "200px" }}
-                variant="top"
-                src={x.wedding_photo}
-              />
-              <Card.Body>
-                <Card.Title>{x.wedding_name}</Card.Title>
-                <Card.Text>{x.description}</Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          ))}
+          {wed ? (
+            planners.map(x => (
+              <Card key={x.id} style={{ width: "18rem", margin: "1rem" }}>
+                <Card.Img
+                  style={{ minHeight: "200px" }}
+                  variant="top"
+                  src={x.wedding_photo}
+                />
+                <Card.Body>
+                  <Card.Title>{x.wedding_name}</Card.Title>
+                  <Card.Text>{x.description}</Card.Text>
+                  <NavLink to={`/${x.id}`}>
+                    <Button variant="primary">Go somewhere</Button>
+                  </NavLink>
+                </Card.Body>
+              </Card>
+            ))
+          ) : (
+            <h1>nothing yet</h1>
+          )}
         </div>
       </div>
     </div>

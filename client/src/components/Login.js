@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import Axios from "axios";
+import { axiosWithAuth } from "../util/axiosWithAuth";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FetchUsers } from "../actions";
@@ -27,23 +27,21 @@ export const Login = props => {
   // const { push } = useHistory();
   const dispatch = useDispatch();
   const handleSubmit = (values, { setStatus, resetForm }) => {
-    Axios.post(
-      `https://wedding-planner-portfolio.herokuapp.com//api/auth/login`,
-      values
-    )
+    axiosWithAuth
+      .post(`/api/auth/login`, values)
 
       .then(res => {
-        setStatus(res.data);
+        // setStatus(res.data);
         resetForm();
         console.log(res, `success`);
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("CURRENTUSER", JSON.stringify(res.data));
+        // localStorage.setItem("token", res.data.token);
+        // localStorage.setItem("CURRENTUSER", JSON.stringify(res.data));
 
-        dispatch({ type: "LOGGED_STATUS", payload: true });
-        dispatch({ type: "CURRENT_USER", payload: res.data });
+        // dispatch({ type: "LOGGED_STATUS", payload: true });
+        // dispatch({ type: "CURRENT_USER", payload: res.data });
 
         dispatch(FetchUsers());
-        // push(`/profile`);
+        // push(`/Home`);
       })
       .catch(err => console.log(err) & alert("Invalid email or Password"))
       .finally();
