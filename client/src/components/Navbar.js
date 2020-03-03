@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import logo from "../assets/images/logo.png";
 import movie from "../assets/wed.mp4";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 
 export const Navbar = () => {
@@ -18,8 +18,11 @@ export const Navbar = () => {
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
         <div className="container">
           {/* <!-- Brand --> */}
+
           <div>
-            <img alt="logo" src={logo} />
+            <NavLink to="./">
+              <img alt="logo" src={logo} />
+            </NavLink>
           </div>
 
           <button
@@ -39,9 +42,9 @@ export const Navbar = () => {
             {/* <!-- Left --> */}
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <a className="nav-link" href="#">
+                <NavLink to="./Home" className="nav-link">
                   Home
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
                 <a className="nav-link">Venues</a>
