@@ -1,8 +1,26 @@
 import React from "react";
 import { axiosWithAuth } from "../util/axiosWithAuth";
+import styled from "styled-components";
+
+const H1 = styled.div`  
+display: flex;
+flex-direction: column;
+margin: 1rem auto;
+padding: 1rem;
+width: 80%;
+background: #00A3FF;
+box-shadow: 0px 0px 24px rgba(0, 163, 255, 0.2);
+border-radius: 20px;
+`
+const Button = styled.button`
+width: 55%;
+margin: auto;
+margin-left: 20%;
+`
+// import history from "./history";
+
 class Cloudinary extends React.Component {
   state = {
-    loading: true,
     username: "",
     password: "",
     profile_pic: "",
@@ -25,7 +43,6 @@ class Cloudinary extends React.Component {
     const file = await res.json();
     this.setState({
       ...this.state,
-      loading: false,
       profile_pic: file.secure_url
     });
   };
@@ -52,54 +69,57 @@ class Cloudinary extends React.Component {
     return (
       <div className="App">
         <form onSubmit={this.handleSubmit}>
-          <h1>username</h1>
+          <H1>Username:
           <input
             type="text"
             name="username"
             value={this.state.username}
-            placeholder="your uses name"
+            placeholder="Your Username"
             onChange={this.handleChange}
           />
-          <h1>password</h1>
+          </H1>
+          <H1>Password:
           <input
             type="password"
             name="password"
             value={this.state.password}
-            placeholder="your password"
+            placeholder="Your Password"
             onChange={this.handleChange}
           />
-          <h1>email</h1>
+          </H1>
+          <H1>Email:
           <input
             type="email"
             name="email"
             value={this.state.email}
-            placeholder="your email"
+            placeholder="Your E-Mail"
             onChange={this.handleChange}
           />
-          <h1>location</h1>
+          </H1>
+          <H1>Location:
           <input
             type="location"
             name="home_location"
             value={this.state.home_location}
-            placeholder="your location"
+            placeholder="Your Location"
             onChange={this.handleChange}
           />
-          <h1>Upload Image</h1>
-          <div style={{ height: "150px" }}>
+          </H1>
+          <H1>
+          Upload Image:
+          <div>
             <input
               type="file"
               filename="image"
-              placeholder="Upload an image"
+              placeholder="Upload An Image"
               onChange={this.uploadImage}
             />
-            {this.state.loading ? (
-              ""
-            ) : (
-              <img src={this.state.profile_pic} style={{ width: "150px" }} />
-            )}
+            {<img src={this.state.profile_pic} style={{ height: "50px" }} />}
           </div>
+          </H1>
+          
           <div>
-            <button type="submit">submit</button>
+            <Button>Submit</Button>
           </div>
         </form>
       </div>
