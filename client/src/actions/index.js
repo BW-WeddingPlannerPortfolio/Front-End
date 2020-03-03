@@ -18,7 +18,7 @@ export const getData = () => dispatch => {
       dispatch({ type: DATA_FAILURE, payload: "something went wrong" });
     });
 };
-export const Fetchusers = () => dispatch => {
+export const FetchUsers = () => dispatch => {
   dispatch({ type: DATA_START });
 
   axiosWithAuth()
