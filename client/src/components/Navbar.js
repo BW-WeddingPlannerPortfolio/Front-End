@@ -107,10 +107,18 @@ export const Navbar = () => {
       <Modal show={showLogin} onHide={handleCloseLogin}>
         <Modal.Header closeButton>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <Modal.Title>Login</Modal.Title>
 =======
           <Modal.Title>SIGN IN</Modal.Title>
 >>>>>>> 41081fb95be8d58094974cbda01b506329513d52
+=======
+
+          <Modal.Title>Login</Modal.Title>
+
+          <Modal.Title>SIGN IN</Modal.Title>
+
+>>>>>>> e0281eea1affba0f7a91844dea67c8c8c8406be2
         </Modal.Header>
         <Modal.Body style={{ height: "50vh", margin: "10px"}}>
           <Login />
