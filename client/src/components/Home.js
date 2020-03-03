@@ -71,9 +71,7 @@ export const Home = () => {
               </li>
 
               <li className="nav-item">
-                {/* <Button variant="primary" onClick={handleShow}>
-                  Submit
-                </Button> */}
+                <a variant="primary">Submit</a>
               </li>
             </ul>
           </div>
@@ -81,10 +79,8 @@ export const Home = () => {
       </nav>
       <div>
         {weddings.map(each => (
-          <div style={{ height: "100px", width: "100px" }}>
+          <div>
             <h1 style={{ marginTop: "5px" }}>{each.wedding_name}</h1>
-            <h1 style={{ marginTop: "5px" }}>{each.theme}</h1>
-            <h1 style={{ marginTop: "5px" }}>{each.wedding_location}</h1>
           </div>
         ))}
       </div>

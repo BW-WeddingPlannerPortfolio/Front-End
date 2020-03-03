@@ -41,6 +41,9 @@ class Cloudinary extends React.Component {
       .post("/api/auth/register", this.state)
       .then(res => {
         console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 
@@ -65,10 +68,18 @@ class Cloudinary extends React.Component {
             placeholder="your password"
             onChange={this.handleChange}
           />
+          <h1>email</h1>
+          <input
+            type="email"
+            name="email"
+            value={this.state.email}
+            placeholder="your email"
+            onChange={this.handleChange}
+          />
           <h1>location</h1>
           <input
             type="location"
-            name="location"
+            name="home_location"
             value={this.state.home_location}
             placeholder="your location"
             onChange={this.handleChange}
