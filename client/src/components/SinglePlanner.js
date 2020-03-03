@@ -10,8 +10,7 @@ export const SinglePlanner = ({ match }) => {
   useEffect(() => {
     dispatch(getData());
   }, [dispatch]);
-  console.log(wed);
-  console.log(id);
+
   return (
     <div>
       {wed.map(user => user.id == id && <div>{user.wedding_name}</div>)}
