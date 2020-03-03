@@ -1,0 +1,42 @@
+html,
+body,
+header,
+.carousel {
+  height: 100%;
+}
+img {
+  height: 15vh;
+}
+/* video {
+  width: 100%;
+}
+
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+
+a {
+  margin: 0px 10px;
+  cursor: pointer;
+}
+.navbar {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+  a {
+    color: white !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background-color: #1c2331;
+  }
+  img {
+    height: 5vh;
+  }
+}

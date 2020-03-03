@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "./Navbar.css";
+import { Card, Button } from "react-bootstrap";
+import "./Home.css";
 import logo from "../assets/images/logo.png";
 import { NavLink } from "react-router-dom";
 import { getData } from "../actions";
@@ -9,7 +10,7 @@ export const Home = () => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
-  const [weddings, setWeddings] = useState([]);
+  const [planners, setPlanners] = useState([]);
   const dispatch = useDispatch();
   const wed = useSelector(state => state);
   console.log(wed);
@@ -17,9 +18,9 @@ export const Home = () => {
     dispatch(getData());
   }, []);
   useEffect(() => {
-    setWeddings(wed.data);
+    setPlanners(wed.data);
   }, [wed]);
-  console.log(weddings);
+  console.log(planners);
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
@@ -65,23 +66,42 @@ export const Home = () => {
             </ul>
 
             {/* <!-- Right --> */}
-            <ul className="navbar-nav nav-flex-icons">
+            {/* <ul className="navbar-nav nav-flex-icons">
               <li className="nav-item">
-                <a className="nav-link">Login</a>
+                <NavLink to="" className="nav-link">
+                  Login
+                </NavLink>
               </li>
 
               <li className="nav-item">
-                <a variant="primary">Submit</a>
+                <NavLink to="" variant="primary">
+                  Submit
+                </NavLink>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
       </nav>
-      <div>
-        {weddings.map(each => (
-          <div>
-            <h1 style={{ marginTop: "5px" }}>{each.wedding_name}</h1>
-          </div>
+      <div
+        style={{
+          paddingTop: "15rem",
+          display: "flex",
+          flexWrap: "wrap"
+        }}
+      >
+        {planners.map(x => (
+          <Card key={x.id} style={{ width: "18rem", margin: "1rem" }}>
+            <Card.Img
+              style={{ minHeight: "200px" }}
+              variant="top"
+              src={x.wedding_photo}
+            />
+            <Card.Body>
+              <Card.Title>{x.wedding_name}</Card.Title>
+              <Card.Text>{x.description}</Card.Text>
+              <Button variant="primary">Go somewhere</Button>
+            </Card.Body>
+          </Card>
         ))}
       </div>
     </div>
