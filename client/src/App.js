@@ -1,14 +1,14 @@
-
 import React from "react";
 import { BrowserRouter as Router, Route} from "react-router-dom";
-import Register from "./components/Register.js";
-
+import Login from "./components/Login.js";
 
 
 function App() {
   return (
     <Router>
-      <Route path="/register" component={Register}/>
+      <NavBar/>
+      <Route path="/login" component={Login}/>
+     
     </Router>
   );
 }

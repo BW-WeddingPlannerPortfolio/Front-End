@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { withFormik, Form, Field } from "formik";
-import {NavLink} from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
 import styled from "styled-components";
@@ -42,9 +41,9 @@ width: 25%;
 margin: 1rem auto;
 `
 
-function NonFormikReg({errors, touched, values, isSubmitting, status}) {
-  const [users, addUser] = useState();
 
+function NonFormik({errors, touched, values, isSubmitting, status}) {
+  const [users, addUser] = useState();
   useEffect(()=>{
     if(status){
       addUser([...users, status])
@@ -55,13 +54,14 @@ function NonFormikReg({errors, touched, values, isSubmitting, status}) {
 
   return (
     <LogReg>
-      <H1>Please Register</H1>
+      <H1>Please Login</H1>
       <Form>
-        <Formo>
+      <Formo>
         <Label>Username<br/>
           {touched.email && errors.email && <p>{errors.email}</p>}
           <Field 
             type="text" 
+
             name="username"
             style={{padding: ".5rem", borderRadius: "10px"}}/>
         </Label>
@@ -70,19 +70,19 @@ function NonFormikReg({errors, touched, values, isSubmitting, status}) {
           <Field
             type="password" 
             name="password"
-            placeholder="At least 7 characters"
             style={{padding: ".5rem", borderRadius: "10px"}}/>
         </Label>
         <Button disabled={isSubmitting}>Submit</Button>
-        <H2>Have an Account?</H2>
-        <NavLink to="/login" style={{textDecoration: "none", color: "white", fontSize: "2rem", textDecoration: "underline"}}>Login</NavLink>
+        {/* <H2>No Account?</H2>
+        <NavLink to="/register" style={{textDecoration: "none", color: "white", fontSize: "2rem", textDecoration: "underline"}}>Signup</NavLink> */}
         </Formo>
+
       </Form>
     </LogReg>
   )
 }
 
-const Register = withFormik({
+const Login = withFormik({
     mapPropsToValues({username, password}){
         return {
             username: username || "",
@@ -109,6 +109,6 @@ const Register = withFormik({
                setSubmitting(false);
              })
     }
-})(NonFormikReg);
+})(NonFormik);
 
-export default Register;
+export default Login;
