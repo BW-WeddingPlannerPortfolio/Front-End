@@ -12,7 +12,7 @@ function App() {
           <Home />
         </Route>
         <Route>
-          <Navbar path="/" />
+          <Navbar  path="/" />
         </Route>
       </Switch>
     </div>
