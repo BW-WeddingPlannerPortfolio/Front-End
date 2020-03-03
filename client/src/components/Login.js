@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Fetchusers } from "../actions";
+import { FetchUsers } from "../actions";
 
 export const Login = props => {
   // const { push } = useHistory();
@@ -25,7 +25,7 @@ export const Login = props => {
         dispatch({ type: "LOGGED_STATUS", payload: true });
         dispatch({ type: "CURRENT_USER", payload: res.data });
 
-        dispatch(Fetchusers());
+        dispatch(FetchUsers());
         // push(`/profile`);
       })
       .catch(err => console.log(err) & alert("Invalid email or Password"))
