@@ -1,8 +1,9 @@
 import React from "react";
 import { axiosWithAuth } from "../util/axiosWithAuth";
+// import history from "./history";
+
 class Cloudinary extends React.Component {
   state = {
-    loading: true,
     username: "",
     password: "",
     profile_pic: "",
@@ -25,7 +26,6 @@ class Cloudinary extends React.Component {
     const file = await res.json();
     this.setState({
       ...this.state,
-      loading: false,
       profile_pic: file.secure_url
     });
   };
@@ -92,11 +92,7 @@ class Cloudinary extends React.Component {
               placeholder="Upload an image"
               onChange={this.uploadImage}
             />
-            {this.state.loading ? (
-              ""
-            ) : (
-              <img src={this.state.profile_pic} style={{ height: "50px" }} />
-            )}
+            {<img src={this.state.profile_pic} style={{ height: "50px" }} />}
           </div>
           <div>
             <button type="submit">submit</button>

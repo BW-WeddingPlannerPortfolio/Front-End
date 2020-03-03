@@ -1,29 +1,20 @@
-import React, {  useState,useEffect } from "react";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../actions";
 
-
-export const  SinglePlanner = (props) => {
-  const {push} = useHistory();
- // console.log(id);
-  const id = props.match.params.id; 
+export const SinglePlanner = ({ match }) => {
   const dispatch = useDispatch();
   const wed = useSelector(state => state.data);
-
-
-  const [data, setData] = useState([]);
-  console.log("props", props);
+  const id = match.params.id;
 
   useEffect(() => {
     dispatch(getData());
-  },[dispatch]);
-
+  }, [dispatch]);
+  console.log(wed);
+  console.log(id);
   return (
     <div>
-    HI
-  </div>
+      {wed.map(user => user.id == id && <div>{user.wedding_name}</div>)}
+    </div>
   );
 };
-

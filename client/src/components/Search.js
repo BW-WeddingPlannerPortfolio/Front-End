@@ -8,7 +8,6 @@ export const Search = ({ handleInput, query }) => {
       <StyledInput
         value={query}
         onChange={handleInput}
-        className="inpt"
         type="search"
         placeholder="Search..."
       />
