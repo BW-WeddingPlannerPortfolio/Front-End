@@ -5,7 +5,24 @@ import Axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FetchUsers } from "../actions";
+import styled from "styled-components";
 
+const Label = styled.div`  
+display: flex;
+flex-direction: column;
+margin: 1rem auto;
+padding: 1rem;
+width: 80%;
+background: #00A3FF;
+box-shadow: 0px 0px 24px rgba(0, 163, 255, 0.2);
+border-radius: 20px;
+`
+
+const Button = styled.button`
+width: 55%;
+margin: auto;
+margin-left: 20%;
+`
 export const Login = props => {
   // const { push } = useHistory();
   const dispatch = useDispatch();
@@ -55,9 +72,9 @@ export const Login = props => {
         } = props;
         return (
           <form onSubmit={handleSubmit}>
-            <label className="loginLabel" htmlFor="username">
-              username
-            </label>
+            <Label>
+              Username
+            
             <input
               className="loginInput"
               name="username"
@@ -67,6 +84,7 @@ export const Login = props => {
               onChange={handleChange}
               onBlur={handleBlur}
             />
+            </Label>
             {console.log(values, "values")}
             {errors.username && touched.username && (
               <span
@@ -76,9 +94,9 @@ export const Login = props => {
                 {errors.username}
               </span>
             )}
-            <label className="loginLabel" htmlFor="username">
+            <Label>
               Password
-            </label>
+            
             <input
               className="loginInput"
               name="password"
@@ -102,10 +120,11 @@ export const Login = props => {
                 {errors.password}
               </span>
             )}
+            </Label>
             <br />
-            <button className="loginButton" type="submit">
+            <Button>
               Login
-            </button>
+            </Button>
           </form>
         );
       }}

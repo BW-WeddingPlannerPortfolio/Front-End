@@ -97,7 +97,7 @@ export const Navbar = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Join Now</Modal.Title>
+          <Modal.Title>JOIN NOW</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ height: "80vh" }}>
           <Cloudinary />
@@ -106,7 +106,7 @@ export const Navbar = () => {
 
       <Modal show={showLogin} onHide={handleCloseLogin}>
         <Modal.Header closeButton>
-          <Modal.Title>Join Now</Modal.Title>
+          <Modal.Title>SIGN IN</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ height: "50vh" }}>
           <Login />
