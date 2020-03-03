@@ -2,12 +2,14 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import Axios from "axios";
+// import history from "./history";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FetchUsers } from "../actions";
 
 export const Login = props => {
-  // const { push } = useHistory();
+  console.log(props);
+  const { push } = useHistory();
   const dispatch = useDispatch();
   const handleSubmit = (values, { setStatus, resetForm }) => {
     Axios.post(
@@ -26,7 +28,7 @@ export const Login = props => {
         dispatch({ type: "CURRENT_USER", payload: res.data });
 
         dispatch(FetchUsers());
-        // push(`/profile`);
+        push(`/Home`);
       })
       .catch(err => console.log(err) & alert("Invalid email or Password"))
       .finally();

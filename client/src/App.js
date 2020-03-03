@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import { Switch, Route } from "react-router-dom";
 import { Home } from "./components/Home";
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <Switch>
