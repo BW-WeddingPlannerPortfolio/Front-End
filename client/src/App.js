@@ -1,12 +1,16 @@
+
 import React from "react";
-import "./App.css";
-import Navbar from "./components/Navbar";
+import { BrowserRouter as Router, Route} from "react-router-dom";
+import Register from "./components/Register.js";
+
+
+
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-    </div>
+    <Router>
+      <Route path="/register" component={Register}/>
+    </Router>
   );
 }
 
-export default App;
+export default App; 
