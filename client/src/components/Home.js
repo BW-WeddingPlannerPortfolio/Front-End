@@ -7,9 +7,10 @@ import { NavLink } from "react-router-dom";
 import { getData } from "../actions";
 import { Search } from "./Search";
 import { useDispatch, useSelector } from "react-redux";
-import SinglePlanner from "./SinglePlanner";
+//import SinglePlanner from "./SinglePlanner";
 
-export const Home = () => {
+export const Home = (props) => {
+  console.log(props, "props from home page");
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
@@ -20,7 +21,7 @@ export const Home = () => {
   const wed = useSelector(state => state.data);
   useEffect(() => {
     dispatch(getData());
-  }, []);
+  }, [dispatch]);
   //
   console.log(wed);
   const handleInput = e => {
@@ -32,6 +33,9 @@ export const Home = () => {
     });
     setPlanners(filtered);
   }, [query]);
+  const planner = (id) => {
+    props.history.push(`/Home/${id}`);
+  }
   console.log(planners);
   return (
     <div>
@@ -67,9 +71,9 @@ export const Home = () => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="./Planners" className="nav-link">
-                  Wedding Planners
-                  </NavLink>
+                <a className="nav-link">
+                  Venues
+                  </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link">Dresses</a>
@@ -105,11 +109,11 @@ export const Home = () => {
               <Card.Body>
                 <Card.Title>{x.wedding_name}</Card.Title>
                 <Card.Text>{x.description}</Card.Text>
-                <NavLink to ={`/${x.id}`}>
-                  <Button>
+                
+                  <Button onClick={() => {planner(x.id)}}>
                   Planner
                   </Button>
-                </NavLink>
+                
               </Card.Body>
             </Card>
           ))}

@@ -5,18 +5,18 @@ import { Switch, Route } from "react-router-dom";
 import { Home } from "./components/Home";
 import {SinglePlanner} from "./components/SinglePlanner";
 
+
 function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path="/Home">
-          <Home />
-        </Route>
-        <Route path = "/:id">
-          <SinglePlanner/>
-        </Route>
+        <Route path="/Home" component={Home}/>
+         
+        <Route path = "/Home/:id" component={SinglePlanner}/>
+          
+        
         <Route>
-          <Navbar  path="/" />
+          <Navbar path="/" />
         </Route>
         
       </Switch>
