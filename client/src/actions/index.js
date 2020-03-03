@@ -1,5 +1,4 @@
 import { axiosWithAuth } from "../util/axiosWithAuth";
-
 export const DATA_START = "DATA_START";
 export const DATA_SUCCESS = "DATA_SUCCESS";
 export const DATA_FAILURE = "DATA_FAILURE";
