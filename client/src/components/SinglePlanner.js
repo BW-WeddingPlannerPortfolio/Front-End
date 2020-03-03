@@ -7,14 +7,23 @@ export const SinglePlanner = ({ match }) => {
   const wed = useSelector(state => state.data);
   const id = match.params.id;
 
+
   useEffect(() => {
     dispatch(getData());
   }, [dispatch]);
-  console.log(wed);
-  console.log(id);
+  
   return (
     <div>
-      {wed.map(user => user.id == id && <div>{user.wedding_name}</div>)}
+      {wed.map(user => user.id == id && 
+      <div>
+        <h2>{user.wedding_name}</h2>
+        <img src ={user.wedding_photo}/>
+        <p>{user.theme}</p>
+        <p>{user.wedding_location}</p>
+        <p>{user.description}</p>
+      
+      </div>
+      )}
     </div>
   );
 };
