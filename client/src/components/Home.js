@@ -1,23 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import logo from "../assets/images/logo.png";
-import movie from "../assets/wed.mp4";
 import { NavLink } from "react-router-dom";
-import { Modal, Button } from "react-bootstrap";
-import Cloudinary from "./SignUp";
-import { Login } from "./Login";
+import { getData } from "../actions";
+import { useDispatch, useSelector } from "react-redux";
 
-export const Navbar = () => {
+export const Home = () => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [showLogin, setShowLogin] = useState(false);
-  const handleCloseLogin = () => setShowLogin(false);
-  const handleShowLogin = () => setShowLogin(true);
-
+  const [weddings, setWeddings] = useState([]);
+  const dispatch = useDispatch();
+  const wed = useSelector(state => state);
+  console.log(wed);
+  useEffect(() => {
+    dispatch(getData());
+  }, []);
+  useEffect(() => {
+    setWeddings(wed.data);
+  }, [wed]);
+  console.log(weddings);
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
@@ -65,55 +67,23 @@ export const Navbar = () => {
             {/* <!-- Right --> */}
             <ul className="navbar-nav nav-flex-icons">
               <li className="nav-item">
-                <Button variant="primary" onClick={handleShowLogin}>
-                  Login
-                </Button>
+                <a className="nav-link">Login</a>
               </li>
 
               <li className="nav-item">
-                <Button variant="primary" onClick={handleShow}>
-                  Join Now
-                </Button>
+                <a variant="primary">Submit</a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
-      {/* // <!-- Navbar --> */}
-
-      {/* // <!--Carousel Wrapper--> */}
-
-      {/* <!--Slides--> */}
-      <div className="carousel-inner" role="listbox">
-        {/* <!--First slide--> */}
-        <div className="carousel-item active">
-          <div className="view">
-            <h1 className="text"></h1>
-            {/* <!--Video source--> */}
-            <video src={movie} className="video-intro" autoPlay loop muted />
+      <div>
+        {weddings.map(each => (
+          <div>
+            <h1 style={{ marginTop: "5px" }}>{each.wedding_name}</h1>
           </div>
-        </div>
+        ))}
       </div>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Join Now</Modal.Title>
-        </Modal.Header>
-        <Modal.Body style={{ height: "80vh" }}>
-          <Cloudinary />
-        </Modal.Body>
-      </Modal>
-
-      <Modal show={showLogin} onHide={handleCloseLogin}>
-        <Modal.Header closeButton>
-          <Modal.Title>Join Now</Modal.Title>
-        </Modal.Header>
-        <Modal.Body style={{ height: "50vh" }}>
-          <Login />
-        </Modal.Body>
-      </Modal>
     </div>
   );
 };
-
-export default Navbar;

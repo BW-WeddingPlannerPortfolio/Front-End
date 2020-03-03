@@ -1,114 +1,114 @@
-import React, {useState, useEffect} from 'react';
-import { withFormik, Form, Field } from "formik";
+import React from "react";
+import { Formik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
-import styled from "styled-components";
+import Axios from "axios";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { FetchUsers } from "../actions";
 
-const LogReg = styled.div`  
-display: flex;
-flex-direction: column;
-margin: 3rem auto;
-padding: 1rem;
-width: 28%;
-background: #00A3FF;
-box-shadow: 0px 0px 24px rgba(0, 163, 255, 0.2);
-border-radius: 20px;
-`
+export const Login = props => {
+  // const { push } = useHistory();
+  const dispatch = useDispatch();
+  const handleSubmit = (values, { setStatus, resetForm }) => {
+    Axios.post(
+      `https://wedding-planner-portfolio.herokuapp.com//api/auth/login`,
+      values
+    )
 
-const Formo = styled.div`
-display: flex;
-flex-direction: column;
-text-align: center;
-`
+      .then(res => {
+        setStatus(res.data);
+        resetForm();
+        console.log(res, `success`);
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("CURRENTUSER", JSON.stringify(res.data));
 
-const H1 = styled.h1`
-text-align: center;
-color: white;
-`
+        dispatch({ type: "LOGGED_STATUS", payload: true });
+        dispatch({ type: "CURRENT_USER", payload: res.data });
 
-const H2 = styled.h2`
-text-align: center;
-color: white;
-`
-
-const Label = styled.label`
-margin-bottom: 1rem;
-color: white;
-`
-
-const Button = styled.button`
-width: 25%;
-margin: 1rem auto;
-`
-
-
-function NonFormik({errors, touched, values, isSubmitting, status}) {
-  const [users, addUser] = useState();
-  useEffect(()=>{
-    if(status){
-      addUser([...users, status])
-    }
-  }, [status]);
-
-
-
+        dispatch(FetchUsers());
+        // push(`/profile`);
+      })
+      .catch(err => console.log(err) & alert("Invalid email or Password"))
+      .finally();
+  };
   return (
-    <LogReg>
-      <H1>Please Login</H1>
-      <Form>
-      <Formo>
-        <Label>Username<br/>
-          {touched.email && errors.email && <p>{errors.email}</p>}
-          <Field 
-            type="text" 
-
-            name="username"
-            style={{padding: ".5rem", borderRadius: "10px"}}/>
-        </Label>
-        <Label>Password<br/>
-        {touched.password && errors.password && <p>{errors.password}</p>}
-          <Field
-            type="password" 
-            name="password"
-            style={{padding: ".5rem", borderRadius: "10px"}}/>
-        </Label>
-        <Button disabled={isSubmitting}>Submit</Button>
-        {/* <H2>No Account?</H2>
-        <NavLink to="/register" style={{textDecoration: "none", color: "white", fontSize: "2rem", textDecoration: "underline"}}>Signup</NavLink> */}
-        </Formo>
-
-      </Form>
-    </LogReg>
-  )
-}
-
-const Login = withFormik({
-    mapPropsToValues({username, password}){
-        return {
-            username: username || "",
-            password: password || ""
-        }
-    },
-    validationSchema: Yup.object().shape({
-        email: Yup.string()
-            .email("Must be a traditional email format")
-            .required("Email field is required"),
+    <Formik
+      initialValues={{ username: "", password: "" }}
+      onSubmit={handleSubmit}
+      validationSchema={Yup.object().shape({
+        username: Yup.string().required("Required"),
         password: Yup.string()
-            .min(7, "Password must be at least 7 characters")
-            .required("Password field is required")
-    }),
-    handleSubmit(values, {resetForm, setSubmitting}){
-        axios.post(/*"API",*/ values)
-             .then(result => {
-               console.log(result);
-               resetForm();
-               setSubmitting(false);
-             })
-             .catch(err=>{
-               console.log(err);
-               setSubmitting(false);
-             })
-    }
-})(NonFormik);
-
-export default Login;
+          .required("No password provided.")
+          .min(6, "Password is too short - should be 6 chars minimum.")
+          .matches(/(?=.*[0-9])/, "Password must contain a number.")
+      })}
+    >
+      {props => {
+        const {
+          values,
+          touched,
+          errors,
+          isSubmitting,
+          handleChange,
+          handleBlur,
+          handleSubmit
+        } = props;
+        return (
+          <form onSubmit={handleSubmit}>
+            <label className="loginLabel" htmlFor="username">
+              username
+            </label>
+            <input
+              className="loginInput"
+              name="username"
+              type="text"
+              placeholder="Enter your username"
+              value={values.username}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {console.log(values, "values")}
+            {errors.username && touched.username && (
+              <span
+                style={{ position: "absolute", top: "70px", left: "70px" }}
+                className="input-feedback"
+              >
+                {errors.username}
+              </span>
+            )}
+            <label className="loginLabel" htmlFor="username">
+              Password
+            </label>
+            <input
+              className="loginInput"
+              name="password"
+              type="password"
+              placeholder="Enter your password"
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.password && touched.password && (
+              <span
+                style={{
+                  position: "absolute",
+                  top: "155px",
+                  right: "-147px",
+                  maxWidth: "1000px",
+                  width: "500px"
+                }}
+                className="input-feedback"
+              >
+                {errors.password}
+              </span>
+            )}
+            <br />
+            <button className="loginButton" type="submit">
+              Login
+            </button>
+          </form>
+        );
+      }}
+    </Formik>
+  );
+};
