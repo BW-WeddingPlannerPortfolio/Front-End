@@ -4,6 +4,8 @@ import logo from "../assets/images/logo.png";
 import movie from "../assets/wed.mp4";
 import { NavLink } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
+import Cloudinary from "./SignUp";
+import { Login } from "./Login";
 
 export const Navbar = () => {
   window.$ = window.jQuery = require("jquery");
@@ -12,6 +14,9 @@ export const Navbar = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [showLogin, setShowLogin] = useState(false);
+  const handleCloseLogin = () => setShowLogin(false);
+  const handleShowLogin = () => setShowLogin(true);
 
   return (
     <div>
@@ -60,12 +65,14 @@ export const Navbar = () => {
             {/* <!-- Right --> */}
             <ul className="navbar-nav nav-flex-icons">
               <li className="nav-item">
-                <a className="nav-link">Login</a>
+                <Button variant="primary" onClick={handleShowLogin}>
+                  Login
+                </Button>
               </li>
 
               <li className="nav-item">
                 <Button variant="primary" onClick={handleShow}>
-                  Submit
+                  Join Now
                 </Button>
               </li>
             </ul>
@@ -81,10 +88,7 @@ export const Navbar = () => {
         {/* <!--First slide--> */}
         <div className="carousel-item active">
           <div className="view">
-            <h1 className="text">
-              Be Our Guest!! <br />
-              this can be a search bar{" "}
-            </h1>
+            <h1 className="text"></h1>
             {/* <!--Video source--> */}
             <video src={movie} className="video-intro" autoPlay loop muted />
           </div>
@@ -95,17 +99,18 @@ export const Navbar = () => {
         <Modal.Header closeButton>
           <Modal.Title>Join Now</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <h2>helolo</h2>
+        <Modal.Body style={{ height: "70vh" }}>
+          <Cloudinary />
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Login
-          </Button>
-        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showLogin} onHide={handleCloseLogin}>
+        <Modal.Header closeButton>
+          <Modal.Title>Join Now</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ height: "70vh" }}>
+          <Login />
+        </Modal.Body>
       </Modal>
     </div>
   );

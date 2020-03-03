@@ -2,7 +2,7 @@ import { DATA_START, DATA_SUCCESS, DATA_FAILURE } from "../actions";
 
 const initialState = {
   loggedin: false,
-  planner: {
+  wedding: {
     wedding_name: "",
     wedding_photo: "",
     theme: "",
