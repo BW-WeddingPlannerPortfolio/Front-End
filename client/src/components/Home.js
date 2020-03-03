@@ -5,6 +5,7 @@ import "./Home.css";
 import logo from "../assets/images/logo.png";
 import { NavLink } from "react-router-dom";
 import { getData } from "../actions";
+import { Search } from "./Search";
 import { useDispatch, useSelector } from "react-redux";
 
 export const Home = () => {
@@ -12,15 +13,29 @@ export const Home = () => {
   window.Popper = require("popper.js").default;
   require("bootstrap");
   const [planners, setPlanners] = useState([]);
+  const [query, setQuery] = useState("");
+
   const dispatch = useDispatch();
-  const wed = useSelector(state => state);
-  console.log(wed);
+  const wed = useSelector(state => state.data);
+  // console.log(wed);
+
   useEffect(() => {
     dispatch(getData());
-  }, []);
+  }, [dispatch]);
+  //
+  console.log(wed);
+  const handleInput = e => {
+    setQuery(e.target.value);
+  };
   useEffect(() => {
-    setPlanners(wed.data);
-  }, [wed]);
+    var filtered = wed.filter(x => {
+      return x.wedding_name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+    });
+    setPlanners(filtered);
+  }, [query]);
+  // useEffect(() => {
+  //   setPlanners(wed.data);
+  // }, []);
   console.log(planners);
   return (
     <div>
@@ -67,45 +82,38 @@ export const Home = () => {
                 <a className="nav-link">Registry</a>
               </li>
             </ul>
-
-            {/* <!-- Right --> */}
-            {/* <ul className="navbar-nav nav-flex-icons">
-              <li className="nav-item">
-                <NavLink to="" className="nav-link">
-                  Login
-                </NavLink>
-              </li>
-
-              <li className="nav-item">
-                <NavLink to="" variant="primary">
-                  Submit
-                </NavLink>
-              </li>
-            </ul> */}
           </div>
         </div>
       </nav>
       <div
         style={{
-          paddingTop: "15rem",
-          display: "flex",
-          flexWrap: "wrap"
+          paddingTop: "15rem"
         }}
       >
-        {planners.map(x => (
-          <Card key={x.id} style={{ width: "18rem", margin: "1rem" }}>
-            <Card.Img
-              style={{ minHeight: "200px" }}
-              variant="top"
-              src={x.wedding_photo}
-            />
-            <Card.Body>
-              <Card.Title>{x.wedding_name}</Card.Title>
-              <Card.Text>{x.description}</Card.Text>
-              <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-          </Card>
-        ))}
+        <div className="Search-container">
+          <Search handleInput={handleInput} query={query} />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap"
+          }}
+        >
+          {planners.map(x => (
+            <Card key={x.id} style={{ width: "18rem", margin: "1rem" }}>
+              <Card.Img
+                style={{ minHeight: "200px" }}
+                variant="top"
+                src={x.wedding_photo}
+              />
+              <Card.Body>
+                <Card.Title>{x.wedding_name}</Card.Title>
+                <Card.Text>{x.description}</Card.Text>
+                <Button variant="primary">Go somewhere</Button>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
     
