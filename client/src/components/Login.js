@@ -79,6 +79,7 @@ export const Login = props => {
                 value={values.username}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                style={{borderRadius: "10px"}}
               />
             </Label>
             {console.log(values, "values")}
@@ -100,6 +101,7 @@ export const Login = props => {
                 value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                style={{borderRadius: "10px"}}
               />
               {errors.password && touched.password && (
                 <span

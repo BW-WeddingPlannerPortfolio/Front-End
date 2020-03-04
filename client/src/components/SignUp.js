@@ -77,6 +77,7 @@ class Cloudinary extends React.Component {
               value={this.state.username}
               placeholder="Your Username"
               onChange={this.handleChange}
+              style={{borderRadius: "10px"}}
             />
           </H1>
           <H1>
@@ -87,6 +88,7 @@ class Cloudinary extends React.Component {
               value={this.state.password}
               placeholder="Your Password"
               onChange={this.handleChange}
+              style={{borderRadius: "10px"}}
             />
           </H1>
           <H1>
@@ -97,6 +99,7 @@ class Cloudinary extends React.Component {
               value={this.state.email}
               placeholder="Your E-Mail"
               onChange={this.handleChange}
+              style={{borderRadius: "10px"}}
             />
           </H1>
           <H1>
@@ -107,6 +110,7 @@ class Cloudinary extends React.Component {
               value={this.state.home_location}
               placeholder="Your Location"
               onChange={this.handleChange}
+              style={{borderRadius: "10px"}}
             />
           </H1>
           <H1>
@@ -118,6 +122,7 @@ class Cloudinary extends React.Component {
                 filename="image"
                 placeholder="Upload An Image"
                 onChange={this.uploadImage}
+                style={{borderRadius: "10px"}}
               />
               {
                 <img
