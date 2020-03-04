@@ -11,13 +11,12 @@ export const Profile = props => {
   // const items = useSelector(state => state.data);
   const currentuser = useSelector(state => state.currentuser);
   const data = useSelector(state => state.planners);
-  const loading = useSelector(state => state.isloading);
+  const loading = useSelector(state => state.loading);
   const dispatch = useDispatch();
   // console.log(currentuser);
-  const loadingcheck = !data && !loading;
   useEffect(() => {
     dispatch(FetchUsers(`/api/planners`));
-  }, [loadingcheck, dispatch]);
+  }, [dispatch]);
 
   // useEffect(() => {
   //   var filtered = data.filter(x => {
@@ -70,11 +69,12 @@ export const Profile = props => {
         </div>
       </nav>
       <div>
-        {!data && !loading && <h2>Waiting on the items ... </h2>}
-        {data && !loading && (
+        {!data ? (
+          <div>fetching...</div>
+        ) : (
           <>
             {data
-              .filter(stuff => stuff.username === currentuser.username)
+              .filter(stuff => stuff.id === currentuser.id)
               .map(x => (
                 <div key={x.id} className="uicard">
                   <div className="fon">
@@ -93,8 +93,10 @@ export const Profile = props => {
 
                     <p>email:{x.email}</p>
 
-                    <button>Edit profile</button>
-                    <NavLink to="addwedding">Add Wedding</NavLink>
+                    <NavLink to={`/editprofile/${currentuser.id}`}>
+                      Edit profile
+                    </NavLink>
+                    <NavLink to="/addwedding">Add Wedding</NavLink>
                   </div>
                 </div>
               ))}

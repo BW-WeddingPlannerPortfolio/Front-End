@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Card, Button } from "react-bootstrap";
 import "./Home.css";
@@ -9,8 +8,7 @@ import { Search } from "./Search";
 import { useDispatch, useSelector } from "react-redux";
 //import SinglePlanner from "./SinglePlanner";
 
-export const Home = (props) => {
-  console.log(props, "props from home page");
+export const Home = props => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
@@ -39,7 +37,7 @@ export const Home = (props) => {
   const handleInput = e => {
     setQuery(e.target.value);
   };
-  // console.log(planners);
+
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
@@ -121,7 +119,5 @@ export const Home = (props) => {
         </div>
       </div>
     </div>
-    
-
   );
 };
