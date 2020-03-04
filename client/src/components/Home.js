@@ -114,7 +114,7 @@ export const Home = (props) => {
                   <Card.Title>{x.wedding_name}</Card.Title>
                   <Card.Text>{x.description}</Card.Text>
                   <NavLink to={`/${x.id}`}>
-                    <Button variant="primary">Go somewhere</Button>
+                    <Button variant="primary">Planner</Button>
                   </NavLink>
                 </Card.Body>
               </Card>
