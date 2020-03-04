@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import { Switch, Route } from "react-router-dom";
 import { Home } from "./components/Home";
 import { SinglePlanner } from "./components/SinglePlanner";
-import { NavLink } from "react-bootstrap";
+
 // import { useDispatch, useSelector } from "react-redux";
 
 function App(props) {
@@ -27,4 +27,4 @@ function App(props) {
   );
 }
 
-export default App; 
+export default App;

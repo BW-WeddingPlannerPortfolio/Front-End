@@ -2,27 +2,27 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { axiosWithAuth } from "../util/axiosWithAuth";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FetchUsers } from "../actions";
 import styled from "styled-components";
 
-const Label = styled.div`  
-display: flex;
-flex-direction: column;
-margin: 1rem auto;
-padding: 1rem;
-width: 80%;
-background: #00A3FF;
-box-shadow: 0px 0px 24px rgba(0, 163, 255, 0.2);
-border-radius: 20px;
-`
+const Label = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 80%;
+  background: #00a3ff;
+  box-shadow: 0px 0px 24px rgba(0, 163, 255, 0.2);
+  border-radius: 20px;
+`;
 
 const Button = styled.button`
-width: 55%;
-margin: auto;
-margin-left: 20%;
-`
+  width: 55%;
+  margin: auto;
+  margin-left: 20%;
+`;
 export const Login = props => {
   // const { push } = useHistory();
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ export const Login = props => {
       .post(`/api/auth/login`, values)
 
       .then(res => {
-        // setStatus(res.data);
+        setStatus(res.data);
         resetForm();
         console.log(res, `success`);
         // localStorage.setItem("token", res.data.token);
@@ -63,7 +63,6 @@ export const Login = props => {
           values,
           touched,
           errors,
-          isSubmitting,
           handleChange,
           handleBlur,
           handleSubmit
@@ -72,16 +71,15 @@ export const Login = props => {
           <form onSubmit={handleSubmit}>
             <Label>
               Username
-            
-            <input
-              className="loginInput"
-              name="username"
-              type="text"
-              placeholder="Enter your username"
-              value={values.username}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
+              <input
+                className="loginInput"
+                name="username"
+                type="text"
+                placeholder="Enter your username"
+                value={values.username}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
             </Label>
             {console.log(values, "values")}
             {errors.username && touched.username && (
@@ -94,35 +92,32 @@ export const Login = props => {
             )}
             <Label>
               Password
-            
-            <input
-              className="loginInput"
-              name="password"
-              type="password"
-              placeholder="Enter your password"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {errors.password && touched.password && (
-              <span
-                style={{
-                  position: "absolute",
-                  top: "155px",
-                  right: "-147px",
-                  maxWidth: "1000px",
-                  width: "500px"
-                }}
-                className="input-feedback"
-              >
-                {errors.password}
-              </span>
-            )}
+              <input
+                className="loginInput"
+                name="password"
+                type="password"
+                placeholder="Enter your password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.password && touched.password && (
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "155px",
+                    right: "-147px",
+                    maxWidth: "1000px",
+                    width: "500px"
+                  }}
+                  className="input-feedback"
+                >
+                  {errors.password}
+                </span>
+              )}
             </Label>
             <br />
-            <Button>
-              Login
-            </Button>
+            <Button>Login</Button>
           </form>
         );
       }}

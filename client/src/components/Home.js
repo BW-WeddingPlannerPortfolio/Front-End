@@ -22,7 +22,6 @@ export const Home = () => {
   //
   useEffect(() => {
     dispatch(getData());
-    setPlanners(wed);
   }, [dispatch]);
   // console.log(wed);
   // console.log(planners);
@@ -32,7 +31,7 @@ export const Home = () => {
       return x.wedding_name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
     });
     setPlanners(filtered);
-  }, [query]);
+  }, [wed, query]);
   const handleInput = e => {
     setQuery(e.target.value);
   };
@@ -70,7 +69,7 @@ export const Home = () => {
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a className="nav-link">Venues</a>
               </li>
               <li className="nav-item">
@@ -78,7 +77,7 @@ export const Home = () => {
               </li>
               <li className="nav-item">
                 <a className="nav-link">Registry</a>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
