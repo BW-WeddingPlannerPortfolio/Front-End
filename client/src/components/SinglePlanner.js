@@ -102,6 +102,7 @@ const StyledH2 = styled.h2`
   font-size: 30px;
   width: 100%;
   margin-top: 20px;
+  padding-top: 40px;
 `;
 const StyledImg = styled.img`
   display: flex;
@@ -110,6 +111,7 @@ const StyledImg = styled.img`
   height: 50vh;
   border-radius: 10px;
   margin: 50px;
+  margin-left:350px;
 `;
 const StyledDesc = styled.p`
   padding: 20px;
