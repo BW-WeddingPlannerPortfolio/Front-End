@@ -36,12 +36,12 @@ export const Login = props => {
         setStatus(res.data);
         resetForm();
         console.log(res, `success`);
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("CURRENTUSER", res.config.data);
-        dispatch({ type: "LOGGED_STATUS", payload: true });
-        dispatch({ type: "CURRENT_USER", payload: res.config.data });
-        dispatch(FetchUsers());
-        history.push("./profile");
+        // localStorage.setItem("token", res.data.token);
+        // localStorage.setItem("CURRENTUSER", res.config.data);
+        // dispatch({ type: "LOGGED_STATUS", payload: true });
+        // dispatch({ type: "CURRENT_USER", payload: res.config.data });
+        // dispatch(FetchUsers());
+        // history.push("./profile");
       })
       .catch(err => console.log(err) & alert("Invalid email or Password"))
       .finally();

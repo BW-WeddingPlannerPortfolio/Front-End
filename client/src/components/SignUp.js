@@ -2,6 +2,7 @@ import React from "react";
 import { axiosWithAuth } from "../util/axiosWithAuth";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { withRouter } from "react-router";
 
 const H1 = styled.div`
   display: flex;
@@ -53,12 +54,18 @@ class Cloudinary extends React.Component {
   };
 
   handleSubmit = e => {
+    const { history } = this.props;
     e.preventDefault();
     axiosWithAuth()
       .post("/api/auth/register", this.state)
       .then(res => {
         console.log(res);
-        // window.history.go("/login");
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem(
+          "CURRENTUSER",
+          JSON.stringify(res.data.newUser.planner)
+        );
+        history.push("/Profile");
       })
       .catch(err => {
         console.log(err);
@@ -129,9 +136,7 @@ class Cloudinary extends React.Component {
           </H1>
 
           <div>
-            <NavLink to="/login">
-              <Button>Submit</Button>
-            </NavLink>
+            <Button>Submit</Button>
           </div>
         </form>
       </div>
@@ -139,4 +144,4 @@ class Cloudinary extends React.Component {
   }
 }
 
-export default Cloudinary;
+export default withRouter(Cloudinary);
