@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/images/logo.png";
@@ -10,7 +9,6 @@ export const Profile = props => {
   window.Popper = require("popper.js").default;
   require("bootstrap");
   // const items = useSelector(state => state.data);
-  const [user, setUser] = useState();
   const currentuser = useSelector(state => state.currentuser);
   const data = useSelector(state => state.planners);
   const loading = useSelector(state => state.isloading);
@@ -96,7 +94,7 @@ export const Profile = props => {
                     <p>email:{x.email}</p>
 
                     <button>Edit profile</button>
-                    <button>Add Wedding</button>
+                    <NavLink to="addwedding">Add Wedding</NavLink>
                   </div>
                 </div>
               ))}

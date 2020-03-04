@@ -2,7 +2,7 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { axiosWithAuth } from "../util/axiosWithAuth";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FetchUsers } from "../actions";
 import styled from "styled-components";
@@ -24,6 +24,8 @@ const Button = styled.button`
   margin-left: 20%;
 `;
 export const Login = props => {
+  const history = useHistory();
+  console.log(props);
   // const { push } = useHistory();
   const dispatch = useDispatch();
   const handleSubmit = (values, { setStatus, resetForm }) => {
@@ -39,6 +41,7 @@ export const Login = props => {
         dispatch({ type: "LOGGED_STATUS", payload: true });
         dispatch({ type: "CURRENT_USER", payload: res.data });
         dispatch(FetchUsers());
+        history.push("./profile");
       })
       .catch(err => console.log(err) & alert("Invalid email or Password"))
       .finally();

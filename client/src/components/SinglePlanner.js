@@ -59,11 +59,15 @@ export const SinglePlanner = ({ match }) => {
       <div>
         {wed.map(
           user =>
-            user.id == id && (
+            user.id === Number(id) && (
               <StyledDiv>
                 <StyledH2>{user.wedding_name}</StyledH2>
                 <div>
-                  <StyledImg src={user.wedding_photo} />
+                  <StyledImg
+                    key={user.id}
+                    alt={user.wedding_name}
+                    src={user.wedding_photo}
+                  />
                   <StyledTAL>
                     <p>Theme: {user.theme}</p>
                     <p>Location: {user.wedding_location}</p>

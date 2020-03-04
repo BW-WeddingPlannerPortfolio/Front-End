@@ -14,6 +14,7 @@ export const Home = () => {
 
   //
   const dispatch = useDispatch();
+  const loggedin = useSelector(state => state.loggedin);
   const wed = useSelector(state => state.data);
   const [planners, setPlanners] = useState([]);
   const [query, setQuery] = useState("");
@@ -69,11 +70,13 @@ export const Home = () => {
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item active">
-                <NavLink to="./profile" className="nav-link">
-                  Profile
-                </NavLink>
-              </li>
+              {loggedin && (
+                <li className="nav-item active">
+                  <NavLink to="./profile" className="nav-link">
+                    Profile
+                  </NavLink>
+                </li>
+              )}
             </ul>
           </div>
         </div>
