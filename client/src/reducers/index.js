@@ -1,5 +1,5 @@
 import { DATA_START, DATA_SUCCESS, DATA_FAILURE } from "../actions";
-const uuidv4 = require("uuid/v4");
+// const uuidv4 = require("uuid/v4");
 
 const setid = window.localStorage.getItem("CURRENTUSER");
 

@@ -13,7 +13,9 @@ export const SinglePlanner = ({ match }) => {
 
   return (
     <div>
-      {wed.map(user => user.id == id && <div>{user.wedding_name}</div>)}
+      {wed.map(
+        user => user.id === Number(id) && <div>{user.wedding_name}</div>
+      )}
     </div>
   );
 };

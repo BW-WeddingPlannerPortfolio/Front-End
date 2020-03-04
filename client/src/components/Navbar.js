@@ -51,7 +51,7 @@ export const Navbar = () => {
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a className="nav-link">Venues</a>
               </li>
               <li className="nav-item">
@@ -59,7 +59,7 @@ export const Navbar = () => {
               </li>
               <li className="nav-item">
                 <a className="nav-link">Registry</a>
-              </li>
+              </li> */}
             </ul>
 
             {/* <!-- Right --> */}
@@ -88,7 +88,6 @@ export const Navbar = () => {
         {/* <!--First slide--> */}
         <div className="carousel-item active">
           <div className="view">
-            <h1 className="text"></h1>
             {/* <!--Video source--> */}
             <video src={movie} className="video-intro" autoPlay loop muted />
           </div>
@@ -108,7 +107,7 @@ export const Navbar = () => {
         <Modal.Header closeButton>
           <Modal.Title>SIGN IN</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ height: "50vh", margin: "10px"}}>
+        <Modal.Body style={{ height: "50vh", margin: "10px" }}>
           <Login />
         </Modal.Body>
       </Modal>

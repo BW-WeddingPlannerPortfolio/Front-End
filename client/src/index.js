@@ -9,7 +9,6 @@ import thunk from "redux-thunk";
 import { reducer } from "./reducers/";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import history from "./components/history";
 
 const store = createStore(reducer, applyMiddleware(thunk));
 ReactDOM.render(
