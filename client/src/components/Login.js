@@ -25,7 +25,7 @@ const Button = styled.button`
 `;
 export const Login = props => {
   const history = useHistory();
-  console.log(props);
+
   // const { push } = useHistory();
   const dispatch = useDispatch();
   const handleSubmit = (values, { setStatus, resetForm }) => {
@@ -39,7 +39,7 @@ export const Login = props => {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("CURRENTUSER", res.config.data);
         dispatch({ type: "LOGGED_STATUS", payload: true });
-        dispatch({ type: "CURRENT_USER", payload: res.data });
+        dispatch({ type: "CURRENT_USER", payload: res.config.data });
         dispatch(FetchUsers());
         history.push("./profile");
       })
@@ -81,7 +81,7 @@ export const Login = props => {
                 onBlur={handleBlur}
               />
             </Label>
-            {console.log(values, "values")}
+
             {errors.username && touched.username && (
               <span
                 style={{ position: "absolute", top: "70px", left: "70px" }}

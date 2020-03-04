@@ -36,7 +36,7 @@ export const Home = () => {
   const handleInput = e => {
     setQuery(e.target.value);
   };
-  // console.log(planners);
+
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">

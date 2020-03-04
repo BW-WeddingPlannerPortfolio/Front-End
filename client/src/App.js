@@ -8,7 +8,7 @@ import { Profile } from "./components/Profile";
 import PrivateRoute from "./util/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { AddWedding } from "./components/AddWedding";
-
+import { Login } from "./components/Login";
 function App(props) {
   const dispatch = useDispatch();
   const currentuser = useSelector(state => state.currentuser);
@@ -29,6 +29,7 @@ function App(props) {
         {/* <PrivateRoute path="/profile" component={Profile} />
         <PrivateRoute path="/profile" component={Profile} /> */}
         <Route path="/Home" component={Home} />
+        <Route path="/login" component={Login} />
         <Route path="/:id" component={SinglePlanner} />
         <Route path="/" component={Navbar} />
       </Switch>
