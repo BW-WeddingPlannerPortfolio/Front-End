@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 const H1 = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1rem auto;
+  margin: .5rem auto;
   padding: 1rem;
   width: 80%;
   background: #00a3ff;
@@ -113,6 +113,7 @@ class Cloudinary extends React.Component {
             Upload Image:
             <div>
               <input
+            
                 type="file"
                 filename="image"
                 placeholder="Upload An Image"
