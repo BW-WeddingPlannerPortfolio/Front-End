@@ -10,75 +10,78 @@ export const SinglePlanner = ({ match }) => {
   const wed = useSelector(state => state.data);
   const id = match.params.id;
 
+
   useEffect(() => {
     dispatch(getData());
   }, [dispatch]);
+
+  
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
-        <div className="container">
-          {/* <!-- Brand --> */}
+      <div className="container">
+        {/* <!-- Brand --> */}
 
-          <div>
-            <NavLink to="./">
-              <img alt="logo" src={logo} />
-            </NavLink>
-          </div>
-
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          {/* <!-- Links --> */}
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            {/* <!-- Left --> */}
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <NavLink to="./Home" className="nav-link">
-                  Home
-                </NavLink>
-              </li>
-              <li className="nav-item active">
-                <NavLink to="./profile" className="nav-link">
-                  Profile
-                </NavLink>
-              </li>
-            </ul>
-          </div>
+        <div>
+          <NavLink to="./">
+            <img alt="logo" src={logo} />
+          </NavLink>
         </div>
-      </nav>
 
-      <div>
-        {wed.map(
-          user =>
-            user.id === Number(id) && (
-              <StyledDiv>
-                <StyledH2>{user.wedding_name}</StyledH2>
-                <div>
-                  <StyledImg
-                    key={user.id}
-                    alt={user.wedding_name}
-                    src={user.wedding_photo}
-                  />
-                  <StyledTAL>
-                    <p>Theme: {user.theme}</p>
-                    <p>Location: {user.wedding_location}</p>
-                  </StyledTAL>
-                  <StyledDesc>About: {user.description}</StyledDesc>
-                </div>
-              </StyledDiv>
-            )
-        )}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        {/* <!-- Links --> */}
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          {/* <!-- Left --> */}
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item active">
+              <NavLink to="./Home" className="nav-link">
+                Home
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link">
+                Venues
+                </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link">Dresses</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link">Registry</a>
+            </li>
+          </ul>
+        </div>
       </div>
+    </nav>
+
+    <div>
+      {wed.map(user => user.id == id && 
+      <StyledDiv>
+        <StyledH2>{user.wedding_name}</StyledH2>
+        <div>
+        <StyledImg src ={user.wedding_photo}/>
+        <StyledTAL>
+        <p>Theme - {user.theme}</p>
+        <p>Location - {user.wedding_location}</p>
+        </StyledTAL>
+        <StyledDesc>About - {user.description}</StyledDesc>
+        </div>
+      </StyledDiv>
+      )}
     </div>
+  </div>
+  
   );
 };
 
@@ -99,6 +102,7 @@ const StyledH2 = styled.h2`
   font-size: 30px;
   width: 100%;
   margin-top: 20px;
+  padding-top: 40px;
 `;
 const StyledImg = styled.img`
   display: flex;
@@ -107,6 +111,7 @@ const StyledImg = styled.img`
   height: 50vh;
   border-radius: 10px;
   margin: 50px;
+  margin-left:350px;
 `;
 const StyledDesc = styled.p`
   padding: 20px;
