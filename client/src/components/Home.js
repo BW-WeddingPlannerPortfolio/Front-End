@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Card, Button } from "react-bootstrap";
 import "./Home.css";
@@ -6,8 +7,10 @@ import { NavLink } from "react-router-dom";
 import { getData } from "../actions";
 import { Search } from "./Search";
 import { useDispatch, useSelector } from "react-redux";
+//import SinglePlanner from "./SinglePlanner";
 
-export const Home = () => {
+export const Home = (props) => {
+  console.log(props, "props from home page");
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
@@ -107,7 +110,7 @@ export const Home = () => {
                   <Card.Title>{x.wedding_name}</Card.Title>
                   <Card.Text>{x.description}</Card.Text>
                   <NavLink to={`/${x.id}`}>
-                    <Button variant="primary">Go somewhere</Button>
+                    <Button variant="primary">Planner</Button>
                   </NavLink>
                 </Card.Body>
               </Card>
@@ -118,5 +121,7 @@ export const Home = () => {
         </div>
       </div>
     </div>
+    
+
   );
 };
