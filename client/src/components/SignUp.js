@@ -1,6 +1,7 @@
 import React from "react";
 import { axiosWithAuth } from "../util/axiosWithAuth";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 
 const H1 = styled.div`
   display: flex;
@@ -17,7 +18,6 @@ const Button = styled.button`
   margin: auto;
   margin-left: 20%;
 `;
-
 class Cloudinary extends React.Component {
   state = {
     username: "",
@@ -52,12 +52,13 @@ class Cloudinary extends React.Component {
   };
 
   handleSubmit = e => {
+    // const dispatch = useDispatch();
     e.preventDefault();
     axiosWithAuth()
       .post("/api/auth/register", this.state)
       .then(res => {
-        console.log(res.data.token);
-        window.localStorage.setItem("token", res.data.token);
+        console.log(res);
+        // window.localStorage.setItem("token", res.data.token);
       })
       .catch(err => {
         console.log(err);

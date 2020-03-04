@@ -3,14 +3,14 @@ export const DATA_START = "DATA_START";
 export const DATA_SUCCESS = "DATA_SUCCESS";
 export const DATA_FAILURE = "DATA_FAILURE";
 export const FORM_CHANGE = "FORM_CHANGE";
-
+export const DATA_SUCCESS_WED = "DATA_SUCCESS_WED";
 export const getData = () => dispatch => {
   dispatch({ type: DATA_START });
   axiosWithAuth()
     .get("/api/weddings")
     .then(res => {
       // console.log(res);
-      dispatch({ type: DATA_SUCCESS, payload: res.data });
+      dispatch({ type: DATA_SUCCESS_WED, payload: res.data });
     })
     .catch(err => {
       // console.log(err);
@@ -22,16 +22,30 @@ export const FetchUsers = () => dispatch => {
 
   axiosWithAuth()
     .get("/api/planners")
-    .then(
-      res =>
-        console.log(res, "res data") &
-        dispatch({ type: DATA_SUCCESS, payload: res.data })
+    .then(res =>
+      // console.log(res, "res data") &
+      dispatch({ type: DATA_SUCCESS, payload: res.data })
     )
     .catch(
       err =>
         console.log(err, "ERROR") &
         dispatch({ type: DATA_FAILURE, payload: err })
     );
+};
+
+export const FetchUser = (url, data) => dispatch => {
+  dispatch({ type: DATA_START });
+  axiosWithAuth()
+    .get(url, data)
+    .then(res => {
+      console.log(res, "Sent data");
+      setTimeout(() => {
+        dispatch({ type: DATA_SUCCESS, payload: res.data });
+      }, 2500);
+    })
+    .catch(err => {
+      dispatch({ type: DATA_FAILURE, payload: err.response });
+    });
 };
 
 export const sendData = (url, data) => dispatch => {
