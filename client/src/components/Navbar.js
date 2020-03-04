@@ -51,6 +51,11 @@ export const Navbar = () => {
                   Home
                 </NavLink>
               </li>
+              <li className="nav-item active">
+                <NavLink to="./profile" className="nav-link">
+                  Profile
+                </NavLink>
+              </li>
               {/* <li className="nav-item">
                 <a className="nav-link">Venues</a>
               </li>
@@ -74,6 +79,9 @@ export const Navbar = () => {
                 <Button variant="primary" onClick={handleShow}>
                   Join Now
                 </Button>
+                <li className="nav-item">
+                  <Button variant="primary">Sign out</Button>
+                </li>
               </li>
             </ul>
           </div>

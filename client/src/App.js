@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import { Switch, Route } from "react-router-dom";
 import { Home } from "./components/Home";
 import { SinglePlanner } from "./components/SinglePlanner";
-
+import { Profile } from "./components/Profile";
 // import { useDispatch, useSelector } from "react-redux";
 
 function App(props) {
@@ -19,6 +19,7 @@ function App(props) {
   return (
     <div className="App">
       <Switch>
+        <Route path="/profile" component={Profile} />
         <Route path="/Home" component={Home} />
         <Route path="/:id" component={SinglePlanner} />
         <Route path="/" component={Navbar} />

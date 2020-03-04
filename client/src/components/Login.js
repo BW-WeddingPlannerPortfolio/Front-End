@@ -27,21 +27,18 @@ export const Login = props => {
   // const { push } = useHistory();
   const dispatch = useDispatch();
   const handleSubmit = (values, { setStatus, resetForm }) => {
-    axiosWithAuth
+    axiosWithAuth()
       .post(`/api/auth/login`, values)
 
       .then(res => {
         setStatus(res.data);
         resetForm();
         console.log(res, `success`);
-        // localStorage.setItem("token", res.data.token);
-        // localStorage.setItem("CURRENTUSER", JSON.stringify(res.data));
-
-        // dispatch({ type: "LOGGED_STATUS", payload: true });
-        // dispatch({ type: "CURRENT_USER", payload: res.data });
-
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("CURRENTUSER", res.config.data);
+        dispatch({ type: "LOGGED_STATUS", payload: true });
+        dispatch({ type: "CURRENT_USER", payload: res.data });
         dispatch(FetchUsers());
-        // push(`/Home`);
       })
       .catch(err => console.log(err) & alert("Invalid email or Password"))
       .finally();

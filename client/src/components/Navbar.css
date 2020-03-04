@@ -9,8 +9,12 @@ img {
 }
 video {
   width: 100%;
+  transform: scale(1.5);
+  height: 100vh;
 }
-
+.nav-item {
+  margin: 0px 10px;
+}
 .text {
   position: absolute;
   top: 50%;

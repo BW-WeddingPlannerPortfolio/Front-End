@@ -69,15 +69,11 @@ export const Home = () => {
                   Home
                 </NavLink>
               </li>
-              {/* <li className="nav-item">
-                <a className="nav-link">Venues</a>
+              <li className="nav-item active">
+                <NavLink to="./profile" className="nav-link">
+                  Profile
+                </NavLink>
               </li>
-              <li className="nav-item">
-                <a className="nav-link">Dresses</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link">Registry</a>
-              </li> */}
             </ul>
           </div>
         </div>
