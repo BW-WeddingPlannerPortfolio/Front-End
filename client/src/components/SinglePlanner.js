@@ -14,6 +14,7 @@ export const SinglePlanner = ({ match }) => {
   useEffect(() => {
     dispatch(getData());
   }, [dispatch]);
+
   
   return (
     <div>
@@ -71,54 +72,51 @@ export const SinglePlanner = ({ match }) => {
         <div>
         <StyledImg src ={user.wedding_photo}/>
         <StyledTAL>
-        <p>Theme: {user.theme}</p>
-        <p>Location: {user.wedding_location}</p>
+        <p>Theme - {user.theme}</p>
+        <p>Location - {user.wedding_location}</p>
         </StyledTAL>
-        <StyledDesc>About: {user.description}</StyledDesc>
+        <StyledDesc>About - {user.description}</StyledDesc>
         </div>
       </StyledDiv>
       )}
     </div>
-    </div>
+  </div>
+  
   );
 };
 
 const StyledDiv = styled.div`
-  display:flex;
-  background-color: #8EC5FC;
-  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-  justify-content:center;
-  flex-direction:column;
+  display: flex;
+  background-color: #8ec5fc;
+  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+  justify-content: center;
+  flex-direction: column;
   height: 100vh;
-  margin:80px;
-  border-radius:5px;
+  margin: 80px;
+  border-radius: 5px;
   margin-top: 150px;
 `;
 const StyledH2 = styled.h2`
-  display:flex;
-  justify-content:center;
+  display: flex;
+  justify-content: center;
   font-size: 30px;
   width: 100%;
-  margin-top:20px;
-
+  margin-top: 20px;
 `;
 const StyledImg = styled.img`
-  display:flex;
-  justify-content:center;
-  width:40%;
+  display: flex;
+  justify-content: center;
+  width: 40%;
   height: 50vh;
-  border-radius:10px;
+  border-radius: 10px;
   margin: 50px;
-
 `;
 const StyledDesc = styled.p`
   padding: 20px;
-  text-direction:center;
+  text-direction: center;
 `;
 const StyledTAL = styled.div`
-  display:flex;
-  flex-direction:row;
-  justify-content:space-around;
-
-
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 `;

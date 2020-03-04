@@ -1,12 +1,19 @@
-import { DATA_START, DATA_SUCCESS, DATA_FAILURE } from "../actions";
-const uuidv4 = require("uuid/v4");
+import {
+  DATA_START,
+  DATA_SUCCESS,
+  DATA_FAILURE,
+  DATA_SUCCESS_WED
+} from "../actions";
+// const uuidv4 = require("uuid/v4");
 
 const setid = window.localStorage.getItem("CURRENTUSER");
 
 const initialState = {
-  currentuser: JSON.parse(setid) ?? { id: 3 },
+  currentuser: JSON.parse(setid),
+
   loggedin: false,
-  wedding: {
+  planners: [],
+  weddings: {
     wedding_name: "",
     wedding_photo: "",
     theme: "",
@@ -26,6 +33,12 @@ export const reducer = (state = initialState, action) => {
         loading: true
       };
     case DATA_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        planners: action.payload
+      };
+    case DATA_SUCCESS_WED:
       return {
         ...state,
         loading: false,

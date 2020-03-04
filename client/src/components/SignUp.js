@@ -1,24 +1,23 @@
 import React from "react";
 import { axiosWithAuth } from "../util/axiosWithAuth";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 
-const H1 = styled.div`  
-display: flex;
-flex-direction: column;
-margin: 1rem auto;
-padding: 1rem;
-width: 80%;
-background: #00A3FF;
-box-shadow: 0px 0px 24px rgba(0, 163, 255, 0.2);
-border-radius: 20px;
-`
+const H1 = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 80%;
+  background: #00a3ff;
+  box-shadow: 0px 0px 24px rgba(0, 163, 255, 0.2);
+  border-radius: 20px;
+`;
 const Button = styled.button`
-width: 55%;
-margin: auto;
-margin-left: 20%;
-`
-// import history from "./history";
-
+  width: 55%;
+  margin: auto;
+  margin-left: 20%;
+`;
 class Cloudinary extends React.Component {
   state = {
     username: "",
@@ -53,11 +52,13 @@ class Cloudinary extends React.Component {
   };
 
   handleSubmit = e => {
+    // const dispatch = useDispatch();
     e.preventDefault();
     axiosWithAuth()
       .post("/api/auth/register", this.state)
       .then(res => {
         console.log(res);
+        // window.localStorage.setItem("token", res.data.token);
       })
       .catch(err => {
         console.log(err);
@@ -65,59 +66,68 @@ class Cloudinary extends React.Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div className="App">
         <form onSubmit={this.handleSubmit}>
-          <H1>Username:
-          <input
-            type="text"
-            name="username"
-            value={this.state.username}
-            placeholder="Your Username"
-            onChange={this.handleChange}
-          />
-          </H1>
-          <H1>Password:
-          <input
-            type="password"
-            name="password"
-            value={this.state.password}
-            placeholder="Your Password"
-            onChange={this.handleChange}
-          />
-          </H1>
-          <H1>Email:
-          <input
-            type="email"
-            name="email"
-            value={this.state.email}
-            placeholder="Your E-Mail"
-            onChange={this.handleChange}
-          />
-          </H1>
-          <H1>Location:
-          <input
-            type="location"
-            name="home_location"
-            value={this.state.home_location}
-            placeholder="Your Location"
-            onChange={this.handleChange}
-          />
+          <H1>
+            Username:
+            <input
+              type="text"
+              name="username"
+              value={this.state.username}
+              placeholder="Your Username"
+              onChange={this.handleChange}
+            />
           </H1>
           <H1>
-          Upload Image:
-          <div>
+            Password:
             <input
-              type="file"
-              filename="image"
-              placeholder="Upload An Image"
-              onChange={this.uploadImage}
+              type="password"
+              name="password"
+              value={this.state.password}
+              placeholder="Your Password"
+              onChange={this.handleChange}
             />
-            {<img src={this.state.profile_pic} style={{ height: "50px" }} />}
-          </div>
           </H1>
-          
+          <H1>
+            Email:
+            <input
+              type="email"
+              name="email"
+              value={this.state.email}
+              placeholder="Your E-Mail"
+              onChange={this.handleChange}
+            />
+          </H1>
+          <H1>
+            Location:
+            <input
+              type="location"
+              name="home_location"
+              value={this.state.home_location}
+              placeholder="Your Location"
+              onChange={this.handleChange}
+            />
+          </H1>
+          <H1>
+            Upload Image:
+            <div>
+              <input
+                type="file"
+                filename="image"
+                placeholder="Upload An Image"
+                onChange={this.uploadImage}
+              />
+              {
+                <img
+                  alt="profile "
+                  src={this.state.profile_pic}
+                  style={{ height: "50px" }}
+                />
+              }
+            </div>
+          </H1>
+
           <div>
             <Button>Submit</Button>
           </div>

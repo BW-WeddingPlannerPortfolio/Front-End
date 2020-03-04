@@ -17,6 +17,7 @@ export const Home = (props) => {
 
   //
   const dispatch = useDispatch();
+  const loggedin = useSelector(state => state.loggedin);
   const wed = useSelector(state => state.data);
   const [planners, setPlanners] = useState([]);
   const [query, setQuery] = useState("");
@@ -25,7 +26,6 @@ export const Home = (props) => {
   //
   useEffect(() => {
     dispatch(getData());
-    setPlanners(wed);
   }, [dispatch]);
   // console.log(wed);
   // console.log(planners);
@@ -35,7 +35,7 @@ export const Home = (props) => {
       return x.wedding_name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
     });
     setPlanners(filtered);
-  }, [query]);
+  }, [wed, query]);
   const handleInput = e => {
     setQuery(e.target.value);
   };
@@ -73,17 +73,13 @@ export const Home = (props) => {
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <a className="nav-link">
-                  Venues
-                  </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link">Dresses</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link">Registry</a>
-              </li>
+              {loggedin && (
+                <li className="nav-item active">
+                  <NavLink to="./profile" className="nav-link">
+                    Profile
+                  </NavLink>
+                </li>
+              )}
             </ul>
           </div>
         </div>
