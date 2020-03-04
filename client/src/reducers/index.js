@@ -2,7 +2,9 @@ import {
   DATA_START,
   DATA_SUCCESS,
   DATA_FAILURE,
-  DATA_SUCCESS_WED
+  DATA_SUCCESS_WED,
+  EDIT_CHANGE
+  // PLANNER_FORM_CHANGE
 } from "../actions";
 // const uuidv4 = require("uuid/v4");
 
@@ -19,7 +21,7 @@ const initialState = {
     wedding_location: "",
     description: ""
   },
-  isloading: false,
+  loading: false,
   data: [],
   error: {}
 };
@@ -49,6 +51,14 @@ export const reducer = (state = initialState, action) => {
         loading: false,
         data: action.payload
       };
+    // case PLANNER_FORM_CHANGE:
+    //   return {
+    //     ...state,
+    //     currentuser: {
+    //       ...state.currentuser,
+    //       [action.name]: action.value
+    //     }
+    //   };
     case "LOGGED_STATUS":
       return {
         ...state,
@@ -58,6 +68,11 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentuser: action.payload
+      };
+    case EDIT_CHANGE:
+      return {
+        ...state,
+        planners: action.payload
       };
     default:
       return state;
