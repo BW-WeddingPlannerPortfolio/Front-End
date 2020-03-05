@@ -60,8 +60,7 @@ export const EditProfile = props => {
       style={{ backgroundImage: `url(${img})`, height: "100vh" }}
       className="P"
     >
-      <div className="text"> updates yor info</div>
-      <div className="container">
+      <div style={{ paddingTop: "5em" }} className="container">
         <form
           style={{
             display: "grid",
@@ -72,6 +71,7 @@ export const EditProfile = props => {
         >
           Username:
           <input
+            style={{ backgroundColor: "lightblue" }}
             type="text"
             name="username"
             value={data.username}
@@ -80,6 +80,7 @@ export const EditProfile = props => {
           />
           Password:
           <input
+            style={{ backgroundColor: "lightblue" }}
             type="password"
             name="password"
             value={data.password}
@@ -88,6 +89,7 @@ export const EditProfile = props => {
           />
           Email:
           <input
+            style={{ backgroundColor: "lightblue" }}
             type="email"
             name="email"
             value={data.email}
@@ -96,6 +98,7 @@ export const EditProfile = props => {
           />
           Location:
           <input
+            style={{ backgroundColor: "lightblue" }}
             type="location"
             name="home_location"
             value={data.home_location}
@@ -120,7 +123,9 @@ export const EditProfile = props => {
           }
         </div> */}
           <div>
-            <button>Submit</button>
+            <button style={{ marginLeft: "12rem", color: "green" }}>
+              Submit
+            </button>
           </div>
         </form>
       </div>

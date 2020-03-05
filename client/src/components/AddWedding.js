@@ -30,11 +30,25 @@ export const AddWedding = props => {
   return (
     <div style={{ height: "100vh", backgroundImage: `url(${img})` }}>
       <Form
-        style={{ display: "table", margin: "0 auto", paddingTop: "10em" }}
+        style={{
+          display: "table",
+          margin: "0 auto",
+          paddingTop: "10em",
+          color: "black",
+          fontSize: "1.1rem",
+          fontWeight: "bolder",
+          lineHeight: "50px",
+          letterSpacing: "1px",
+          textShadow: "2px 2px 2px white"
+        }}
         onSubmit={handlesubmit}
       >
         <Form.Row>
-          <Form.Group as={Col} controlId="formGridText">
+          <Form.Group
+            style={{ margin: "10px" }}
+            as={Col}
+            controlId="formGridText"
+          >
             <Form.Label>your wedding name</Form.Label>
             <Form.Control
               type="text"
@@ -44,7 +58,11 @@ export const AddWedding = props => {
             />
           </Form.Group>
 
-          <Form.Group as={Col} controlId="formGridText">
+          <Form.Group
+            style={{ margin: "10px" }}
+            as={Col}
+            controlId="formGridText"
+          >
             <Form.Label>your wedding theme</Form.Label>
             <Form.Control
               value={weddings.theme}
@@ -55,7 +73,7 @@ export const AddWedding = props => {
           </Form.Group>
         </Form.Row>
         <Form.Row>
-          <Form.Group controlId="formGridAddress1">
+          <Form.Group style={{ margin: "10px" }} controlId="formGridAddress1">
             <Form.Label>location of you wedding</Form.Label>
             <Form.Control
               value={weddings.wedding_location}
@@ -64,7 +82,7 @@ export const AddWedding = props => {
             />
           </Form.Group>
 
-          <Form.Group controlId="formGridAddress2">
+          <Form.Group style={{ margin: "10px" }} controlId="formGridAddress2">
             <Form.Label>description</Form.Label>
             <Form.Control
               value={weddings.description}
