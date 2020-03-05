@@ -1,7 +1,8 @@
 import React from "react";
 import { axiosWithAuth } from "../util/axiosWithAuth";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { withRouter } from "react-router";
 
 const H1 = styled.div`
   display: flex;
@@ -18,6 +19,7 @@ const Button = styled.button`
   margin: auto;
   margin-left: 20%;
 `;
+
 class Cloudinary extends React.Component {
   state = {
     username: "",
@@ -52,13 +54,19 @@ class Cloudinary extends React.Component {
   };
 
   handleSubmit = e => {
-    // const dispatch = useDispatch();
+    const { history } = this.props;
     e.preventDefault();
     axiosWithAuth()
       .post("/api/auth/register", this.state)
       .then(res => {
         console.log(res);
-        // window.localStorage.setItem("token", res.data.token);
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem(
+          "CURRENTUSER",
+          JSON.stringify(res.data.newUser.planner)
+        );
+        history.push("/Profile");
+        window.location.reload(true);
       })
       .catch(err => {
         console.log(err);
@@ -143,4 +151,4 @@ class Cloudinary extends React.Component {
   }
 }
 
-export default Cloudinary;
+export default withRouter(Cloudinary);

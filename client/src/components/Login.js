@@ -25,7 +25,7 @@ const Button = styled.button`
 `;
 export const Login = props => {
   const history = useHistory();
-  console.log(props);
+
   // const { push } = useHistory();
   const dispatch = useDispatch();
   const handleSubmit = (values, { setStatus, resetForm }) => {
@@ -36,12 +36,12 @@ export const Login = props => {
         setStatus(res.data);
         resetForm();
         console.log(res, `success`);
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("CURRENTUSER", res.config.data);
-        dispatch({ type: "LOGGED_STATUS", payload: true });
-        dispatch({ type: "CURRENT_USER", payload: res.data });
-        dispatch(FetchUsers());
-        history.push("./profile");
+        // localStorage.setItem("token", res.data.token);
+        // localStorage.setItem("CURRENTUSER", res.config.data);
+        // dispatch({ type: "LOGGED_STATUS", payload: true });
+        // dispatch({ type: "CURRENT_USER", payload: res.config.data });
+        // dispatch(FetchUsers());
+        // history.push("./profile");
       })
       .catch(err => console.log(err) & alert("Invalid email or Password"))
       .finally();
@@ -82,7 +82,7 @@ export const Login = props => {
                 style={{borderRadius: "10px"}}
               />
             </Label>
-            {console.log(values, "values")}
+
             {errors.username && touched.username && (
               <span
                 style={{ position: "absolute", top: "70px", left: "70px" }}

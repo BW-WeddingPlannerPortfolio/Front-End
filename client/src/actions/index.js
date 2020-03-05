@@ -4,6 +4,9 @@ export const DATA_SUCCESS = "DATA_SUCCESS";
 export const DATA_FAILURE = "DATA_FAILURE";
 export const FORM_CHANGE = "FORM_CHANGE";
 export const DATA_SUCCESS_WED = "DATA_SUCCESS_WED";
+export const EDIT_CHANGE = "EDIT_CHANGE";
+export const PLANNER_FORM_CHANGE = "PLANNER_FORM_CHANGE";
+export const EDIT_DATA_SUCCESS = "EDIT_DATA_SUCCESS";
 export const getData = () => dispatch => {
   dispatch({ type: DATA_START });
   axiosWithAuth()
@@ -57,6 +60,19 @@ export const sendData = (url, data) => dispatch => {
       setTimeout(() => {
         dispatch({ type: DATA_SUCCESS, payload: res.data });
       }, 2500);
+    })
+    .catch(err => {
+      dispatch({ type: DATA_FAILURE, payload: err.response });
+    });
+};
+
+export const editData = (url, data) => dispatch => {
+  dispatch({ type: DATA_START });
+  axiosWithAuth()
+    .put(url, data)
+    .then(res => {
+      // console.log(res, "edited data");
+      dispatch({ type: EDIT_DATA_SUCCESS });
     })
     .catch(err => {
       dispatch({ type: DATA_FAILURE, payload: err.response });

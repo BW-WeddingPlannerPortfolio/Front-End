@@ -9,23 +9,17 @@ export const Profile = props => {
   window.Popper = require("popper.js").default;
   require("bootstrap");
   // const items = useSelector(state => state.data);
-  const currentuser = useSelector(state => state.currentuser);
-  const data = useSelector(state => state.planners);
-  const loading = useSelector(state => state.isloading);
+  const loading = useSelector(state => state.loading);
   const dispatch = useDispatch();
-  // console.log(currentuser);
-  const loadingcheck = !data && !loading;
   useEffect(() => {
     dispatch(FetchUsers(`/api/planners`));
-  }, [loadingcheck, dispatch]);
+  }, [loading, dispatch]);
+  const currentuser = useSelector(state => state.currentuser);
+  const data = useSelector(state => state.planners);
 
-  // useEffect(() => {
-  //   var filtered = data.filter(x => {
-  //     return x.username === currentuser.username;
-  //   });
-  //   setUser(filtered);
-  // // }, [data]);
-  // console.log(user);
+  // console.log(currentuser);
+  // console.log(loading);
+
   return (
     <div>
       {" "}
@@ -69,38 +63,41 @@ export const Profile = props => {
           </div>
         </div>
       </nav>
-      <div>
-        {!data && !loading && <h2>Waiting on the items ... </h2>}
-        {data && !loading && (
-          <>
-            {data
-              .filter(stuff => stuff.username === currentuser.username)
-              .map(x => (
-                <div key={x.id} className="uicard">
-                  <div className="fon">
-                    <img src="https://www.fennes.co.uk/wp-content/uploads/2014/10/fennes_wedding.jpg" />
-                  </div>
-
-                  <div className="user">
-                    {!x.profile_pic ? (
-                      <img src="https://www.york.ac.uk/media/environment/images/staff/NoImageAvailableMale.jpg" />
-                    ) : (
-                      <img src={x.profile_pic} />
-                    )}
-                    <p>name: {x.xname}</p>
-
-                    <p>location: {x.home_location}</p>
-
-                    <p>email:{x.email}</p>
-
-                    <button>Edit profile</button>
-                    <NavLink to="addwedding">Add Wedding</NavLink>
-                  </div>
+      {loading ? (
+        <div style={{ margin: "30rem", fontSize: "3rem" }}>loading...</div>
+      ) : (
+        <>
+          {data
+            .filter(stuff => stuff.id === currentuser.id)
+            .map(x => (
+              <div key={x.id} className="uicard">
+                <div className="fon">
+                  <img src="https://www.fennes.co.uk/wp-content/uploads/2014/10/fennes_wedding.jpg" />
                 </div>
-              ))}
-          </>
-        )}
-      </div>
+
+                <div className="user">
+                  {!x.profile_pic ? (
+                    <img src="https://www.york.ac.uk/media/environment/images/staff/NoImageAvailableMale.jpg" />
+                  ) : (
+                    <img src={x.profile_pic} />
+                  )}
+                  <p>name: {x.xname}</p>
+
+                  <p>location: {x.home_location}</p>
+
+                  <p>email:{x.email}</p>
+
+                  <NavLink to={`/editprofile/${currentuser.id}`}>
+                    Edit profile
+                  </NavLink>
+                  <NavLink to={`/addwedding/${currentuser.id}`}>
+                    Add Wedding
+                  </NavLink>
+                </div>
+              </div>
+            ))}
+        </>
+      )}
     </div>
   );
 };
