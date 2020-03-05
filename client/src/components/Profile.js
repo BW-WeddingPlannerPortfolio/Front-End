@@ -63,43 +63,41 @@ export const Profile = props => {
           </div>
         </div>
       </nav>
-      <div>
-        {loading ? (
-          <div style={{ margin: "30rem", fontSize: "3rem" }}>loading...</div>
-        ) : (
-          <>
-            {data
-              .filter(stuff => stuff.id === currentuser.id)
-              .map(x => (
-                <div key={x.id} className="uicard">
-                  <div className="fon">
-                    <img src="https://www.fennes.co.uk/wp-content/uploads/2014/10/fennes_wedding.jpg" />
-                  </div>
-
-                  <div className="user">
-                    {!x.profile_pic ? (
-                      <img src="https://www.york.ac.uk/media/environment/images/staff/NoImageAvailableMale.jpg" />
-                    ) : (
-                      <img src={x.profile_pic} />
-                    )}
-                    <p>name: {x.xname}</p>
-
-                    <p>location: {x.home_location}</p>
-
-                    <p>email:{x.email}</p>
-
-                    <NavLink to={`/editprofile/${currentuser.id}`}>
-                      Edit profile
-                    </NavLink>
-                    <NavLink to={`/addwedding/${currentuser.id}`}>
-                      Add Wedding
-                    </NavLink>
-                  </div>
+      {loading ? (
+        <div style={{ margin: "30rem", fontSize: "3rem" }}>loading...</div>
+      ) : (
+        <>
+          {data
+            .filter(stuff => stuff.id === currentuser.id)
+            .map(x => (
+              <div key={x.id} className="uicard">
+                <div className="fon">
+                  <img src="https://www.fennes.co.uk/wp-content/uploads/2014/10/fennes_wedding.jpg" />
                 </div>
-              ))}
-          </>
-        )}
-      </div>
+
+                <div className="user">
+                  {!x.profile_pic ? (
+                    <img src="https://www.york.ac.uk/media/environment/images/staff/NoImageAvailableMale.jpg" />
+                  ) : (
+                    <img src={x.profile_pic} />
+                  )}
+                  <p>name: {x.xname}</p>
+
+                  <p>location: {x.home_location}</p>
+
+                  <p>email:{x.email}</p>
+
+                  <NavLink to={`/editprofile/${currentuser.id}`}>
+                    Edit profile
+                  </NavLink>
+                  <NavLink to={`/addwedding/${currentuser.id}`}>
+                    Add Wedding
+                  </NavLink>
+                </div>
+              </div>
+            ))}
+        </>
+      )}
     </div>
   );
 };
