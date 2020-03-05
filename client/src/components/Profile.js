@@ -9,22 +9,17 @@ export const Profile = props => {
   window.Popper = require("popper.js").default;
   require("bootstrap");
   // const items = useSelector(state => state.data);
-  const currentuser = useSelector(state => state.currentuser);
-  const data = useSelector(state => state.planners);
   const loading = useSelector(state => state.loading);
   const dispatch = useDispatch();
-  // console.log(currentuser);
   useEffect(() => {
     dispatch(FetchUsers(`/api/planners`));
-  }, [dispatch]);
+  }, [loading, dispatch]);
+  const currentuser = useSelector(state => state.currentuser);
+  const data = useSelector(state => state.planners);
 
-  // useEffect(() => {
-  //   var filtered = data.filter(x => {
-  //     return x.username === currentuser.username;
-  //   });
-  //   setUser(filtered);
-  // // }, [data]);
-  // console.log(user);
+  // console.log(currentuser);
+  // console.log(loading);
+
   return (
     <div>
       {" "}
@@ -69,8 +64,8 @@ export const Profile = props => {
         </div>
       </nav>
       <div>
-        {!data ? (
-          <div>fetching...</div>
+        {loading ? (
+          <div style={{ margin: "30rem", fontSize: "3rem" }}>loading...</div>
         ) : (
           <>
             {data
@@ -96,7 +91,9 @@ export const Profile = props => {
                     <NavLink to={`/editprofile/${currentuser.id}`}>
                       Edit profile
                     </NavLink>
-                    <NavLink to="/addwedding">Add Wedding</NavLink>
+                    <NavLink to={`/addwedding/${currentuser.id}`}>
+                      Add Wedding
+                    </NavLink>
                   </div>
                 </div>
               ))}
