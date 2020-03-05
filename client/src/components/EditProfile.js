@@ -49,7 +49,7 @@ export const EditProfile = props => {
     // const { history } = this.props;
     dispatch(editData(`/api/planner/${currentuser.id}`, data));
     push("/profile");
-    window.location.reload(false);
+    // window.location.reload(false);
   };
 
   return (

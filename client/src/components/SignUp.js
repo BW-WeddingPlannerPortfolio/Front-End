@@ -66,6 +66,7 @@ class Cloudinary extends React.Component {
           JSON.stringify(res.data.newUser.planner)
         );
         history.push("/Profile");
+        window.location.reload(true);
       })
       .catch(err => {
         console.log(err);

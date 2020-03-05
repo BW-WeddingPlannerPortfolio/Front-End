@@ -21,18 +21,18 @@ const initialState = {
     wedding_location: "",
     description: ""
   },
-  loading: false,
+  loading: true,
   data: [],
   error: {}
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case DATA_START:
-      return {
-        ...state,
-        loading: true
-      };
+    // case DATA_START:
+    //   return {
+    //     ...state,
+    //     loading: true
+    //   };
     case DATA_SUCCESS:
       return {
         ...state,
