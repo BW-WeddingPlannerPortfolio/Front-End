@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@bootstrap-styled/v4": "github:bootstrap-styled/v4",
     "bootstrap": "^4.4.1",
     "formik": "^2.1.4",
     "react": "^16.13.0",
