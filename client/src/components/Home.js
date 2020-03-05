@@ -16,7 +16,6 @@ export const Home = props => {
   //
   const dispatch = useDispatch();
   const loggedin = useSelector(state => state.loggedin);
-  const wed = useSelector(state => state.data);
   const [planners, setPlanners] = useState([]);
   const [query, setQuery] = useState("");
   // console.log(wed);
@@ -27,7 +26,7 @@ export const Home = props => {
   }, [dispatch]);
   // console.log(wed);
   // console.log(planners);
-
+  const wed = useSelector(state => state.data);
   useEffect(() => {
     var filtered = wed.filter(x => {
       return x.wedding_name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
