@@ -3,8 +3,9 @@ import {
   DATA_SUCCESS,
   DATA_FAILURE,
   DATA_SUCCESS_WED,
-  EDIT_CHANGE
-  // PLANNER_FORM_CHANGE
+  EDIT_CHANGE,
+  PLANNER_FORM_CHANGE,
+  EDIT_DATA_SUCCESS
 } from "../actions";
 // const uuidv4 = require("uuid/v4");
 
@@ -39,6 +40,12 @@ export const reducer = (state = initialState, action) => {
         loading: false,
         planners: action.payload
       };
+    case EDIT_DATA_SUCCESS:
+      return {
+        ...state,
+        loading: false
+        // planners: action.payload
+      };
     case DATA_SUCCESS_WED:
       return {
         ...state,
@@ -51,14 +58,19 @@ export const reducer = (state = initialState, action) => {
         loading: false,
         data: action.payload
       };
-    // case PLANNER_FORM_CHANGE:
-    //   return {
-    //     ...state,
-    //     currentuser: {
-    //       ...state.currentuser,
-    //       [action.name]: action.value
-    //     }
-    //   };
+    case PLANNER_FORM_CHANGE:
+      return {
+        ...state,
+        weddings: {
+          ...state.weddings,
+          id: action.id,
+          wedding_name: action.wedding_name,
+          wedding_photo: action.wedding_photo,
+          theme: action.theme,
+          wedding_location: action.wedding_location,
+          description: action.description
+        }
+      };
     case "LOGGED_STATUS":
       return {
         ...state,

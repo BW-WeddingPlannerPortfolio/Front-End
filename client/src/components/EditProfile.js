@@ -5,11 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { editData } from "../actions";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/images/logo.png";
+
 export const EditProfile = props => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
   //
+  const img =
+    "https://media.moddb.com/images/articles/1/228/227945/34008485-update-blue-square-stam.jpg";
   const loggedin = useSelector(state => state.loggedin);
   const dispatch = useDispatch();
   const { push } = useHistory();
@@ -21,7 +24,7 @@ export const EditProfile = props => {
     email: ""
   });
   const currentuser = useSelector(state => state.currentuser);
-  console.log(data);
+  // console.log(data);
 
   // const uploadImage = async e => {
   //   const files = e.target.files;
@@ -53,53 +56,22 @@ export const EditProfile = props => {
   };
 
   return (
-    <div className="App">
-      <nav className="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
-        <div className="container">
-          {/* <!-- Brand --> */}
-
-          <div>
-            <NavLink to="./">
-              <img alt="logo" src={logo} />
-            </NavLink>
-          </div>
-
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          {/* <!-- Links --> */}
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            {/* <!-- Left --> */}
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <NavLink to="./Home" className="nav-link">
-                  Home
-                </NavLink>
-              </li>
-              {loggedin && (
-                <li className="nav-item active">
-                  <NavLink to="./profile" className="nav-link">
-                    Profile
-                  </NavLink>
-                </li>
-              )}
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <div style={{ marginTop: "10rem" }}>
-        <form onSubmit={handleSubmit}>
+    <div
+      style={{ backgroundImage: `url(${img})`, height: "100vh" }}
+      className="P"
+    >
+      <div style={{ paddingTop: "5em" }} className="container">
+        <form
+          style={{
+            display: "grid",
+            width: "50%",
+            margin: "0 auto"
+          }}
+          onSubmit={handleSubmit}
+        >
           Username:
           <input
+            style={{ backgroundColor: "lightblue" }}
             type="text"
             name="username"
             value={data.username}
@@ -108,6 +80,7 @@ export const EditProfile = props => {
           />
           Password:
           <input
+            style={{ backgroundColor: "lightblue" }}
             type="password"
             name="password"
             value={data.password}
@@ -116,6 +89,7 @@ export const EditProfile = props => {
           />
           Email:
           <input
+            style={{ backgroundColor: "lightblue" }}
             type="email"
             name="email"
             value={data.email}
@@ -124,6 +98,7 @@ export const EditProfile = props => {
           />
           Location:
           <input
+            style={{ backgroundColor: "lightblue" }}
             type="location"
             name="home_location"
             value={data.home_location}
@@ -148,7 +123,9 @@ export const EditProfile = props => {
           }
         </div> */}
           <div>
-            <button>Submit</button>
+            <button style={{ marginLeft: "12rem", color: "green" }}>
+              Submit
+            </button>
           </div>
         </form>
       </div>
