@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Jumbotron, Button } from "react-bootstrap";
+import { Delete } from "../actions/";
+import { useDispatch, useSelector } from "react-redux";
 export const PlannerWeddingsSingle = ({ data }) => {
+  const dispatch = useDispatch();
   return (
     <div>
       <div>
@@ -22,7 +25,16 @@ export const PlannerWeddingsSingle = ({ data }) => {
             </span>
           </p>
           <p>
-            <Button variant="primary">Delete</Button>
+            <Button
+              onClick={() => {
+                console.log(data.id);
+                // TODO: delete on click
+                // TODO: delete action is commented out for now
+              }}
+              variant="primary"
+            >
+              Delete
+            </Button>
           </p>
         </Jumbotron>
       </div>
