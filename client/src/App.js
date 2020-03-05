@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AddWedding } from "./components/AddWedding";
 import { Login } from "./components/Login";
 import { EditProfile } from "./components/EditProfile";
+import { PlannerWeddings } from "./components/PlannerWeddings";
 function App(props) {
   const dispatch = useDispatch();
   const currentuser = useSelector(state => state.currentuser);
@@ -31,7 +32,10 @@ function App(props) {
           path={`/editprofile/${currentuser.id}`}
           component={EditProfile}
         />
-        {/* <PrivateRoute path="/profile" component={Profile} /> */}
+        <PrivateRoute
+          path={`/plannerweddings${currentuser.id}`}
+          component={PlannerWeddings}
+        />
         <Route path="/Home" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/:id" component={SinglePlanner} />

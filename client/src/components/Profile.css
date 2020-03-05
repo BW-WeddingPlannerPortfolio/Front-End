@@ -1,9 +1,10 @@
 .uicard {
   position: relative;
   background-color: #2b303b;
-  width: 559px;
+  width: 459px;
   height: 599px;
   margin: 0 auto;
+  /* /margin-left: 10px; */
   margin-top: 10rem;
   border-radius: 5px;
   box-shadow: 3px 2px 15px 0px #212129;
@@ -13,7 +14,7 @@
   border-radius: 5px 5px 0 0;
   position: relative;
   margin: 0 auto;
-  width: 559px;
+  width: 459px;
   height: 273px;
 }
 
@@ -31,4 +32,12 @@
   font-size: 2.1em;
   color: #fff;
   margin-top: -20px;
+}
+.info {
+  margin-top: 15rem;
+  background: rgb(60, 63, 75);
+  height: 500px;
+  width: 600px;
+  text-align: center;
+  color: white;
 }

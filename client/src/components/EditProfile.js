@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 
 export const EditProfile = props => {
+  const back = "\u23CE";
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
@@ -56,56 +57,60 @@ export const EditProfile = props => {
   };
 
   return (
-    <div
-      style={{ backgroundImage: `url(${img})`, height: "100vh" }}
-      className="P"
-    >
-      <div style={{ paddingTop: "5em" }} className="container">
-        <form
-          style={{
-            display: "grid",
-            width: "50%",
-            margin: "0 auto"
-          }}
-          onSubmit={handleSubmit}
-        >
-          Username:
-          <input
-            style={{ backgroundColor: "lightblue" }}
-            type="text"
-            name="username"
-            value={data.username}
-            placeholder={currentuser.username}
-            onChange={handleChange}
-          />
-          Password:
-          <input
-            style={{ backgroundColor: "lightblue" }}
-            type="password"
-            name="password"
-            value={data.password}
-            placeholder="Your Password"
-            onChange={handleChange}
-          />
-          Email:
-          <input
-            style={{ backgroundColor: "lightblue" }}
-            type="email"
-            name="email"
-            value={data.email}
-            placeholder={currentuser.email}
-            onChange={handleChange}
-          />
-          Location:
-          <input
-            style={{ backgroundColor: "lightblue" }}
-            type="location"
-            name="home_location"
-            value={data.home_location}
-            placeholder={currentuser.home_location}
-            onChange={handleChange}
-          />
-          {/* Upload Image:
+    <div>
+      <NavLink to="/Profile">
+        <span style={{ fontSize: "4rem" }}>{back}</span>
+      </NavLink>
+      <div
+        style={{ backgroundImage: `url(${img})`, height: "100vh" }}
+        className="P"
+      >
+        <div style={{ paddingTop: "5em" }} className="container">
+          <form
+            style={{
+              display: "grid",
+              width: "50%",
+              margin: "0 auto"
+            }}
+            onSubmit={handleSubmit}
+          >
+            Username:
+            <input
+              style={{ backgroundColor: "lightblue" }}
+              type="text"
+              name="username"
+              value={data.username}
+              placeholder={currentuser.username}
+              onChange={handleChange}
+            />
+            Password:
+            <input
+              style={{ backgroundColor: "lightblue" }}
+              type="password"
+              name="password"
+              value={data.password}
+              placeholder="Your Password"
+              onChange={handleChange}
+            />
+            Email:
+            <input
+              style={{ backgroundColor: "lightblue" }}
+              type="email"
+              name="email"
+              value={data.email}
+              placeholder={currentuser.email}
+              onChange={handleChange}
+            />
+            Location:
+            <input
+              style={{ backgroundColor: "lightblue" }}
+              type="location"
+              name="home_location"
+              value={data.home_location}
+              placeholder={currentuser.home_location}
+              onChange={handleChange}
+            />
+            {/* Upload Image:
         <div>
           <input
             type="file"
@@ -122,12 +127,13 @@ export const EditProfile = props => {
             />
           }
         </div> */}
-          <div>
-            <button style={{ marginLeft: "12rem", color: "green" }}>
-              Submit
-            </button>
-          </div>
-        </form>
+            <div>
+              <button style={{ marginLeft: "12rem", color: "green" }}>
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
