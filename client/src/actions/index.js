@@ -8,6 +8,7 @@ export const EDIT_CHANGE = "EDIT_CHANGE";
 export const PLANNER_FORM = "PLANNER_FORM";
 export const EDIT_DATA_SUCCESS = "EDIT_DATA_SUCCESS";
 export const PLANNER_DATA_SUCCESS = "PLANNER_DATA_SUCCESS";
+export const DELETE_SUCCESS = "DELETE_SUCCESS";
 export const getData = () => dispatch => {
   dispatch({ type: DATA_START });
   axiosWithAuth()
@@ -101,6 +102,21 @@ export const editData = (url, data) => dispatch => {
     .then(res => {
       // console.log(res, "edited data");
       dispatch({ type: EDIT_DATA_SUCCESS });
+    })
+    .catch(err => {
+      dispatch({ type: DATA_FAILURE, payload: err.response });
+    });
+};
+
+export const Delete = id => dispatch => {
+  dispatch({ type: DATA_START });
+  axiosWithAuth()
+    .delete(` /api/weddings/${id}`)
+    .then(res => {
+      console.log(res, "Deleted data");
+      // setTimeout(() => {
+      //   dispatch({ type: DELETE_SUCCESS, payload: res.data });
+      // }, 2500);
     })
     .catch(err => {
       dispatch({ type: DATA_FAILURE, payload: err.response });

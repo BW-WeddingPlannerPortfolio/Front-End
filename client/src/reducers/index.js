@@ -6,7 +6,8 @@ import {
   EDIT_CHANGE,
   PLANNER_FORM,
   EDIT_DATA_SUCCESS,
-  PLANNER_DATA_SUCCESS
+  PLANNER_DATA_SUCCESS,
+  DELETE_SUCCESS
 } from "../actions";
 // const uuidv4 = require("uuid/v4");
 
@@ -40,6 +41,12 @@ export const reducer = (state = initialState, action) => {
         ...state,
         loading: false,
         planners: action.payload
+      };
+    case DELETE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: action.payload
       };
     case PLANNER_DATA_SUCCESS:
       return {

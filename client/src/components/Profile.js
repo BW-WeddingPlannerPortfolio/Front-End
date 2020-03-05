@@ -2,12 +2,24 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/images/logo.png";
-import { FetchUsers, getWeddingData } from "../actions/";
+import { FetchUsers, getWeddingData, Delete } from "../actions/";
 import "./Profile.css";
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
+} from "@bootstrap-styled/v4";
+import Alert from "@bootstrap-styled/v4/lib/Alert";
+import Button from "@material-ui/core/Button";
+//
 export const Profile = props => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
+  //
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
   //
   const loading = useSelector(state => state.loading);
   const dispatch = useDispatch();
@@ -105,8 +117,11 @@ export const Profile = props => {
                     </NavLink>
                   </div>
                 </div>
+
                 <div className="info">
-                  <h5>Your Work</h5>
+                  <NavLink to={`/plannerweddings${currentuser.id}`}>
+                    <h5>See All of you work</h5>
+                  </NavLink>
                   <div>
                     {allWeddings
                       .filter(weddings => weddings.planner_id == currentuser.id)
@@ -117,40 +132,63 @@ export const Profile = props => {
                               "linear-gradient(45deg, black, transparent)"
                           }}
                         >
-                          <div>
-                            <p>
-                              <span style={{ fontWeight: "bold" }}>
-                                wedding name:
-                              </span>{" "}
-                              <span style={{ color: "gray" }}>
-                                {myWedding.wedding_name}
-                              </span>
-                            </p>
-                          </div>
                           <p>
-                            <span style={{ fontWeight: "bold" }}>
+                            <span style={{ fontWeight: "bolder" }}>
+                              wedding name:
+                            </span>{" "}
+                            <span style={{ color: "red" }}>
+                              {myWedding.wedding_name}
+                            </span>
+                          </p>
+
+                          <p>
+                            <span style={{ fontWeight: "bolder" }}>
                               wedding theme:
                             </span>{" "}
-                            <span style={{ color: "gray" }}>
+                            <span style={{ color: "red" }}>
                               {myWedding.theme}
                             </span>
                           </p>
                           <p>
-                            <span style={{ fontWeight: "bold" }}>
+                            <span style={{ fontWeight: "bolder" }}>
                               wedding location:
                             </span>{" "}
-                            <span style={{ color: "gray" }}>
+                            <span style={{ color: "red" }}>
                               {myWedding.wedding_location}
                             </span>
                           </p>
-                          <button
+                          {/* <button
                             style={{ background: "none", color: "green" }}
                           >
                             Edit Venue{" "}
                           </button>
-                          <button style={{ background: "none", color: "red" }}>
+                          <button
+                            style={{ background: "none", color: "red" }}
+                          >
                             Delete Venue
-                          </button>
+                          </button> */}
+                          {/* <Modal isOpen={modal} toggle={toggle} backdrop={true}>
+                            <ModalHeader toggle={toggle}>
+                              <Alert
+                                color="danger"
+                                style={{ textAlign: "center" }}
+                              >
+                                ARE YOU SURE YOU WANT TO "DELETE"{" "}
+                                {myWedding.wedding_name}
+                              </Alert>
+                            </ModalHeader>
+                            <ModalBody>
+                              <hi>hello</hi>
+                            </ModalBody>
+                            <ModalFooter>
+                              <Button variant="outlined" color="secondary">
+                                Delete
+                              </Button>
+                              <Button variant="outlined" onClick={toggle}>
+                                Cancel
+                              </Button>
+                            </ModalFooter>
+                          </Modal> */}
                         </div>
                       ))}
                   </div>
