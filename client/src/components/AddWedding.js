@@ -25,9 +25,10 @@ export const AddWedding = props => {
   const handlechange = e => {
     e.preventDefault();
     setWeddings({ ...weddings, [e.target.name]: e.target.value });
-    // console.log(weddi)
+    console.log(weddings);
   };
   // console.log(weddings);
+
   const handlesubmit = e => {
     e.preventDefault();
     dispatch(sendForm(`/api/planner/weddings`, weddings));

@@ -13,12 +13,12 @@ export const ALL_DATA_SUCCESS = "ALL_DATA_SUCCESS";
 
 //
 export const getData = url => dispatch => {
-  // dispatch({ type: DATA_START });
+  dispatch({ type: DATA_START });
   //this is for all wedding data at home compo
   axiosWithAuth()
     .get(url)
     .then(res => {
-      console.log(res, "all weddinh data at home component");
+      // console.log(res, "all weddinh data at home component");
       dispatch({ type: ALL_DATA_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -47,7 +47,7 @@ export const FetchUser = (url, id) => dispatch => {
   axiosWithAuth()
     .get(url, id)
     .then(res => {
-      console.log(res, "Sent data");
+      // console.log(res, "Sent data");
       // setTimeout(() => {
       dispatch({ type: DATA_SUCCESS, payload: res.data.planner });
       // }, 2500);
@@ -62,7 +62,7 @@ export const sendForm = (url, data) => dispatch => {
   axiosWithAuth()
     .post(url, data)
     .then(res => {
-      console.log(res, "Sent data");
+      // console.log(res, "Sent data");
       // setTimeout(() => {
       dispatch({ type: DATA_SUCCESS, payload: res.data });
       // }, 2500);
@@ -77,7 +77,7 @@ export const editData = (url, data) => dispatch => {
   axiosWithAuth()
     .put(url, data)
     .then(res => {
-      console.log(res, "edited data");
+      // console.log(res, "edited data");
       dispatch({ type: EDIT_DATA_SUCCESS });
     })
     .catch(err => {
@@ -105,7 +105,7 @@ export const Delete = (url, id) => dispatch => {
   axiosWithAuth()
     .delete(url, id)
     .then(res => {
-      console.log(res, "Deleted data");
+      // console.log(res, "Deleted data");
       // setTimeout(() => {
       dispatch({ type: DELETE_SUCCESS, payload: res.data });
       // }, 2500);
