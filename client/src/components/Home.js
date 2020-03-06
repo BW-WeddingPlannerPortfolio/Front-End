@@ -23,7 +23,7 @@ export const Home = props => {
 
   useEffect(() => {
     dispatch(getData(`/api/weddings`));
-  }, [dispatch]);
+  }, [wed, dispatch]);
 
   useEffect(() => {
     var filtered = wed.filter(x => {

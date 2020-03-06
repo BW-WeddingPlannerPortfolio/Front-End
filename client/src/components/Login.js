@@ -8,7 +8,7 @@ import styled from "styled-components";
 const Label = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1rem auto;
+  margin: 0 auto;
   padding: 1rem;
   width: 80%;
   background: #00a3ff;
@@ -52,7 +52,10 @@ export const Login = props => {
   };
   return (
     <Label>
-      <form onSubmit={handleSubmit}>
+      <form
+        style={{ textAling: "center", padding: "2rem", display: "inherit" }}
+        onSubmit={handleSubmit}
+      >
         <label>
           username:
           <input
