@@ -16,6 +16,7 @@ import Typography from "@material-ui/core/Typography";
 export const SinglePlanner = ({ match }) => {
   const dispatch = useDispatch();
   const plannersData = useSelector(state => state.plannersData);
+  const plannersInfo = useSelector(state => state.plannersInfo);
   const loading = useSelector(state => state.loading);
   const id = match.params.id;
   // console.log(plannersData);
