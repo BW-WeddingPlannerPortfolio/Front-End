@@ -8,7 +8,8 @@ import {
   EDIT_DATA_SUCCESS,
   PLANNER_DATA_SUCCESS,
   DELETE_SUCCESS,
-  ALL_DATA_SUCCESS
+  ALL_DATA_SUCCESS,
+  PLANNERS_INFO_DATA
 } from "../actions";
 // const uuidv4 = require("uuid/v4");
 
@@ -18,6 +19,7 @@ const initialState = {
   currentuser: user ?? { id: 0 },
   loggedin: false,
   planners: [],
+  plannersInfo: [],
   plannersData: [],
   weddings: [],
   loading: true,
@@ -65,11 +67,11 @@ export const reducer = (state = initialState, action) => {
         loading: false,
         data: action.payload
       };
-    case DATA_SUCCESS_WED:
+    case PLANNERS_INFO_DATA:
       return {
         ...state,
         loading: false,
-        data: action.payload
+        plannersInfo: action.payload
       };
     case DATA_FAILURE:
       return {

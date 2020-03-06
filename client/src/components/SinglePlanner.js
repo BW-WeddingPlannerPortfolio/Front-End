@@ -47,17 +47,6 @@ export const SinglePlanner = ({ match }) => {
                   Home
                 </NavLink>
               </li>
-              {/* <li className="nav-item">
-              <a className="nav-link">
-                Venues
-                </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link">Dresses</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link">Registry</a>
-            </li> */}
             </ul>
           </div>
         </div>
@@ -66,7 +55,6 @@ export const SinglePlanner = ({ match }) => {
       <div>
         {plannersData.map(
           user => (
-            //   user.id == id && (
             <StyledDiv>
               <StyledH2>{user.wedding_name}</StyledH2>
               <div>
@@ -77,6 +65,9 @@ export const SinglePlanner = ({ match }) => {
                 </StyledTAL>
                 <StyledDesc>About - {user.description}</StyledDesc>
               </div>
+              <NavLink to={`/plannersinfo/${user.id}`}>
+                See all the work they did.
+              </NavLink>
             </StyledDiv>
           )
           // )

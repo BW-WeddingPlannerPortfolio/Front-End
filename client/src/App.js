@@ -11,6 +11,7 @@ import { AddWedding } from "./components/AddWedding";
 import { Login } from "./components/Login";
 import { EditProfile } from "./components/EditProfile";
 import { PlannerWeddings } from "./components/PlannerWeddings";
+import { SingleInfo } from "./components/SingleInfo";
 function App(props) {
   const dispatch = useDispatch();
   const currentuser = useSelector(state => state.currentuser);
@@ -38,7 +39,9 @@ function App(props) {
         />
         <Route path="/Home" component={Home} />
         <Route path="/login" component={Login} />
+        <Route path="/plannersinfo/:id" component={SingleInfo} />
         <Route path="/:id" component={SinglePlanner} />
+
         <Route path="/" component={Navbar} />
       </Switch>
     </div>
