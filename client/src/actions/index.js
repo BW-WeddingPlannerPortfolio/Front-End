@@ -10,7 +10,7 @@ export const EDIT_DATA_SUCCESS = "EDIT_DATA_SUCCESS";
 export const PLANNER_DATA_SUCCESS = "PLANNER_DATA_SUCCESS";
 export const DELETE_SUCCESS = "DELETE_SUCCESS";
 export const ALL_DATA_SUCCESS = "ALL_DATA_SUCCESS";
-
+export const PLANNERS_INFO_DATA = "PLANNERS_INFO_DATA";
 //
 export const getData = url => dispatch => {
   dispatch({ type: DATA_START });
@@ -85,20 +85,20 @@ export const editData = (url, data) => dispatch => {
     });
 };
 
-// export const sendData = (url, data) => dispatch => {
-//   dispatch({ type: DATA_START });
-//   axiosWithAuth()
-//     .post(url, data)
-//     .then(res => {
-//       console.log(res, "Sent data");
-//       setTimeout(() => {
-//         dispatch({ type: DATA_SUCCESS, payload: res.data });
-//       }, 2500);
-//     })
-//     .catch(err => {
-//       dispatch({ type: DATA_FAILURE, payload: err.response });
-//     });
-// };
+export const PlannersInfo = (url, id) => dispatch => {
+  dispatch({ type: DATA_START });
+  axiosWithAuth()
+    .get(url, id)
+    .then(res => {
+      console.log(res, "Sent data");
+      setTimeout(() => {
+        dispatch({ type: PLANNERS_INFO_DATA, payload: res.data });
+      }, 2500);
+    })
+    .catch(err => {
+      dispatch({ type: DATA_FAILURE, payload: err.response });
+    });
+};
 
 export const Delete = (url, id) => dispatch => {
   dispatch({ type: DATA_START });
