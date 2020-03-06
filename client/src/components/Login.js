@@ -28,13 +28,14 @@ export const Login = props => {
 
   // const { push } = useHistory();
   const dispatch = useDispatch();
-  const handleSubmit = (values, { setStatus, resetForm }) => {
+  const handleSubmit = (values) => {
+
     axiosWithAuth()
       .post(`/api/auth/login`, values)
 
       .then(res => {
-        setStatus(res.data);
-        resetForm();
+        // setStatus(res.data);
+        //resetForm();
         console.log(res, `success`);
         // localStorage.setItem("token", res.data.token);
         // localStorage.setItem("CURRENTUSER", res.config.data);
