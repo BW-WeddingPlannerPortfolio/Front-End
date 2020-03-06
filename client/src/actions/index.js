@@ -33,7 +33,9 @@ export const getWeddingData = (url, id) => dispatch => {
     .get(url, id)
     .then(res => {
       // console.log(res, "planners data");
-      dispatch({ type: PLANNER_DATA_SUCCESS, payload: res.data });
+      setTimeout(() => {
+        dispatch({ type: PLANNER_DATA_SUCCESS, payload: res.data });
+      }, 500);
     })
     .catch(err => {
       // console.log(err);
@@ -48,9 +50,9 @@ export const FetchUser = (url, id) => dispatch => {
     .get(url, id)
     .then(res => {
       // console.log(res, "Sent data");
-      // setTimeout(() => {
-      dispatch({ type: DATA_SUCCESS, payload: res.data.planner });
-      // }, 2500);
+      setTimeout(() => {
+        dispatch({ type: DATA_SUCCESS, payload: res.data.planner });
+      }, 500);
     })
     .catch(err => {
       dispatch({ type: DATA_FAILURE, payload: err.response });
@@ -63,9 +65,9 @@ export const sendForm = (url, data) => dispatch => {
     .post(url, data)
     .then(res => {
       // console.log(res, "Sent data");
-      // setTimeout(() => {
-      dispatch({ type: DATA_SUCCESS, payload: res.data });
-      // }, 2500);
+      setTimeout(() => {
+        dispatch({ type: DATA_SUCCESS, payload: res.data });
+      }, 2500);
     })
     .catch(err => {
       dispatch({ type: DATA_FAILURE, payload: err.response });
@@ -106,9 +108,9 @@ export const Delete = (url, id) => dispatch => {
     .delete(url, id)
     .then(res => {
       // console.log(res, "Deleted data");
-      // setTimeout(() => {
-      dispatch({ type: DELETE_SUCCESS, payload: res.data });
-      // }, 2500);
+      setTimeout(() => {
+        dispatch({ type: DELETE_SUCCESS, payload: res.data });
+      }, 2500);
     })
     .catch(err => {
       dispatch({ type: DATA_FAILURE, payload: err.response });

@@ -15,6 +15,7 @@ export const Home = props => {
   //
   const { push } = useHistory();
   const dispatch = useDispatch();
+  const loading = useSelector(state => state.loading);
   const loggedin = useSelector(state => state.loggedin);
   const [planners, setPlanners] = useState([]);
   const [query, setQuery] = useState("");
@@ -23,8 +24,8 @@ export const Home = props => {
 
   useEffect(() => {
     dispatch(getData(`/api/weddings`));
-  }, [dispatch]);
-
+  }, [wed, planners, dispatch]);
+  // console.log(loading);
   useEffect(() => {
     var filtered = wed.filter(x => {
       return x.wedding_name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
