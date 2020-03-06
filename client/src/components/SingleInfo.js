@@ -54,7 +54,7 @@ export const SingleInfo = props => {
   const loading = useSelector(state => state.loading);
   useEffect(() => {
     dispatch(PlannersInfo(`/api/planners/${id}`));
-  }, []);
+  }, [dispatch]);
 
   console.log(plannersInfo);
 
@@ -84,8 +84,7 @@ export const SingleInfo = props => {
               <MoreVertIcon />
             </IconButton>
           }
-          title="Shrimp and Chorizo Paella"
-          subheader="September 14, 2016"
+          title="be our guest"
         />
         <CardMedia
           className={classes.media}
