@@ -13,9 +13,9 @@ import {
 // const uuidv4 = require("uuid/v4");
 
 const setid = window.localStorage.getItem("CURRENTUSER");
-
+const user = JSON.parse(setid);
 const initialState = {
-  currentuser: JSON.parse(setid) ?? { id: 3 },
+  currentuser: user ?? { id: 0 },
   loggedin: false,
   planners: [],
   plannersData: [],
@@ -27,11 +27,11 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    // case DATA_START:
-    //   return {
-    //     ...state,
-    //     loading: true
-    //   };
+    case DATA_START:
+      return {
+        ...state,
+        loading: true
+      };
     case DATA_SUCCESS:
       //return all data at home
       return {

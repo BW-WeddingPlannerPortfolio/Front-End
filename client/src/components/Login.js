@@ -35,16 +35,13 @@ export const Login = props => {
     axiosWithAuth()
       .post(`/api/auth/login`, creds)
       .then(res => {
-        // console.log(res, `success`);
-        // localStorage.setItem("token", res.data.token);
-        // localStorage.setItem(
-        //   "CURRENTUSER",
-        //   JSON.stringify(res.data.config.data)
-        // );
-        // dispatch({ type: "LOGGED_STATUS", payload: true });
-        // dispatch({ type: "CURRENT_USER", payload: res.data.config.data });
-        // dispatch(FetchUser(`/api/planners/${currentuser.id}`));
-        // push("./profile");
+        console.log(res, `success`);
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("CURRENTUSER", JSON.stringify(res.data.planner));
+        dispatch({ type: "LOGGED_STATUS", payload: true });
+        dispatch({ type: "CURRENT_USER", payload: res.data.planner });
+        dispatch(FetchUser(`/api/planners/${currentuser.id}`));
+        push("./Profile");
       })
       .catch(err => console.log(err) & alert("Invalid email or Password"))
       .finally();

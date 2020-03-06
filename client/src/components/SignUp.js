@@ -60,12 +60,12 @@ class Cloudinary extends React.Component {
       .post("/api/auth/register", this.state)
       .then(res => {
         console.log(res);
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem(
-          "CURRENTUSER",
-          JSON.stringify(res.data.newUser.planner)
-        );
-        history.push("/Profile");
+        // localStorage.setItem("token", res.data.token);
+        // localStorage.setItem(
+        //   "CURRENTUSER",
+        //   JSON.stringify(res.data.newUser.planner)
+        // );
+        history.push("/Login");
       })
       .catch(err => {
         console.log(err);
