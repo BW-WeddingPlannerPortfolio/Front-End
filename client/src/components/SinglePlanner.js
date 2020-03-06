@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getData } from "../actions";
+import { getWeddingData } from "../actions";
 import logo from "../assets/images/logo.png";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const SinglePlanner = ({ match }) => {
   const dispatch = useDispatch();
-  const wed = useSelector(state => state.data);
+  const plannersData = useSelector(state => state.plannersData);
   const id = match.params.id;
-
+  console.log(plannersData);
   useEffect(() => {
-    dispatch(getData());
+    dispatch(getWeddingData(`/api/weddings/${id}`));
   }, [dispatch]);
 
   return (
@@ -64,21 +64,22 @@ export const SinglePlanner = ({ match }) => {
       </nav>
 
       <div>
-        {wed.map(
-          user =>
-            user.id == id && (
-              <StyledDiv>
-                <StyledH2>{user.wedding_name}</StyledH2>
-                <div>
-                  <StyledImg src={user.wedding_photo} />
-                  <StyledTAL>
-                    <p>Theme - {user.theme}</p>
-                    <p>Location - {user.wedding_location}</p>
-                  </StyledTAL>
-                  <StyledDesc>About - {user.description}</StyledDesc>
-                </div>
-              </StyledDiv>
-            )
+        {plannersData.map(
+          user => (
+            //   user.id == id && (
+            <StyledDiv>
+              <StyledH2>{user.wedding_name}</StyledH2>
+              <div>
+                <StyledImg src={user.wedding_photo} />
+                <StyledTAL>
+                  <p>Theme - {user.theme}</p>
+                  <p>Location - {user.wedding_location}</p>
+                </StyledTAL>
+                <StyledDesc>About - {user.description}</StyledDesc>
+              </div>
+            </StyledDiv>
+          )
+          // )
         )}
       </div>
     </div>

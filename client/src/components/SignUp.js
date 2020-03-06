@@ -49,11 +49,11 @@ class Cloudinary extends React.Component {
   };
 
   handleChange = e => {
-    e.preventDefault();
     this.setState({ ...this.state, [e.target.name]: e.target.value });
   };
 
   handleSubmit = e => {
+    e.preventDefault();
     const { history } = this.props;
     e.preventDefault();
     axiosWithAuth()
@@ -66,7 +66,6 @@ class Cloudinary extends React.Component {
           JSON.stringify(res.data.newUser.planner)
         );
         history.push("/Profile");
-        // window.location.reload(true);
       })
       .catch(err => {
         console.log(err);
