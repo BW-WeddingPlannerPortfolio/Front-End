@@ -32,7 +32,7 @@ export const Profile = props => {
   const allWeddings = useSelector(state => state.plannersData);
   const currentuser = useSelector(state => state.currentuser);
   const loading = useSelector(state => state.loading);
-  const log = useSelector(state => state.loggedin);
+  // const log = useSelector(state => state.loggedin);
   // const update = useSelector(state => state.weddings);
   // dispatch({ type: "CURRENT_USER", payload: currentuser });
   useEffect(() => {
