@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Col, Button, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { sendForm, PLANNER_FORM } from "../actions/";
+import { sendForm } from "../actions/";
 import { NavLink } from "react-router-dom";
 
 export const AddWedding = props => {
@@ -25,6 +25,7 @@ export const AddWedding = props => {
   const handlechange = e => {
     e.preventDefault();
     setWeddings({ ...weddings, [e.target.name]: e.target.value });
+    // console.log(weddi)
   };
   // console.log(weddings);
   const handlesubmit = e => {

@@ -7,7 +7,8 @@ import {
   PLANNER_FORM,
   EDIT_DATA_SUCCESS,
   PLANNER_DATA_SUCCESS,
-  DELETE_SUCCESS
+  DELETE_SUCCESS,
+  ALL_DATA_SUCCESS
 } from "../actions";
 // const uuidv4 = require("uuid/v4");
 
@@ -17,13 +18,8 @@ const initialState = {
   currentuser: JSON.parse(setid) ?? { id: 3 },
   loggedin: false,
   planners: [],
-  weddings: {
-    wedding_name: "",
-    wedding_photo: "",
-    theme: "",
-    wedding_location: "",
-    description: ""
-  },
+  plannersData: [],
+  weddings: [],
   loading: true,
   data: [],
   error: {}
@@ -37,28 +33,37 @@ export const reducer = (state = initialState, action) => {
     //     loading: true
     //   };
     case DATA_SUCCESS:
+      //return all data at home
       return {
         ...state,
         loading: false,
         planners: action.payload
       };
-    case DELETE_SUCCESS:
+    case PLANNER_DATA_SUCCESS:
+      //single wedding from home
       return {
         ...state,
         loading: false,
-        weddings: action.payload
+        plannersData: action.payload
       };
-    case PLANNER_DATA_SUCCESS:
+    case DELETE_SUCCESS:
+      //data
       return {
         ...state,
         loading: false
-        // data: action.payload
+        // weddings: action.payload
       };
     case EDIT_DATA_SUCCESS:
       return {
         ...state,
         loading: false
         // planners: action.payload
+      };
+    case ALL_DATA_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: action.payload
       };
     case DATA_SUCCESS_WED:
       return {
@@ -72,14 +77,7 @@ export const reducer = (state = initialState, action) => {
         loading: false,
         data: action.payload
       };
-    case PLANNER_FORM:
-      return {
-        ...state,
-        weddings: {
-          ...state.weddings
-          // weddings: action.payload
-        }
-      };
+
     case "LOGGED_STATUS":
       return {
         ...state,

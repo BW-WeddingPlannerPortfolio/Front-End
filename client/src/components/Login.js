@@ -1,48 +1,50 @@
 import React, { useState } from "react";
-// import { Formik } from "formik";
-// import * as Yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import { FetchUser } from "../actions/";
 import { axiosWithAuth } from "../util/axiosWithAuth";
 import { useHistory } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { FetchUsers } from "../actions";
-// import styled from "styled-components";
+import styled from "styled-components";
 
-// const Label = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   margin: 1rem auto;
-//   padding: 1rem;
-//   width: 80%;
-//   background: #00a3ff;
-//   box-shadow: 0px 0px 24px rgba(0, 163, 255, 0.2);
-//   border-radius: 20px;
-// `;
+const Label = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 80%;
+  background: #00a3ff;
+  box-shadow: 0px 0px 24px rgba(0, 163, 255, 0.2);
+  border-radius: 20px;
+`;
 
-// const Button = styled.button`
-//   width: 55%;
-//   margin: auto;
-//   margin-left: 20%;
-// `;
+const Button = styled.button`
+  width: 55%;
+  margin: auto;
+  margin-left: 20%;
+`;
 export const Login = props => {
-  const history = useHistory();
+  const dispatch = useDispatch();
+  const { push } = useHistory();
+  const currentuser = useSelector(state => state.currentuser);
   const [creds, setCreds] = useState({
     username: "",
     password: ""
   });
-  // const { push } = useHistory();
-  // const dispatch = useDispatch();
-  const handleSubmit = () => {
+
+  const handleSubmit = e => {
+    e.preventDefault();
     axiosWithAuth()
       .post(`/api/auth/login`, creds)
-
       .then(res => {
-        console.log(res, `success`);
+        // console.log(res, `success`);
         // localStorage.setItem("token", res.data.token);
-        // localStorage.setItem("CURRENTUSER", res.config.data);
+        // localStorage.setItem(
+        //   "CURRENTUSER",
+        //   JSON.stringify(res.data.config.data)
+        // );
         // dispatch({ type: "LOGGED_STATUS", payload: true });
-        // dispatch({ type: "CURRENT_USER", payload: res.config.data });
-        // dispatch(FetchUsers());
-        // history.push("./profile");
+        // dispatch({ type: "CURRENT_USER", payload: res.data.config.data });
+        // dispatch(FetchUser(`/api/planners/${currentuser.id}`));
+        // push("./profile");
       })
       .catch(err => console.log(err) & alert("Invalid email or Password"))
       .finally();
@@ -52,28 +54,30 @@ export const Login = props => {
     setCreds({ ...creds, [e.target.name]: e.target.value });
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        username:
-        <input
-          type="text"
-          name="username"
-          value={creds.username}
-          onChange={onChange}
-        />
-      </label>
-      <label>
-        passwords:
-        <input
-          type="password"
-          name="passwords"
-          value={creds.passwords}
-          onChange={onChange}
-        />
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
-    // <Formik
+    <Label>
+      <form onSubmit={handleSubmit}>
+        <label>
+          username:
+          <input
+            type="text"
+            name="username"
+            value={creds.username}
+            onChange={onChange}
+          />
+        </label>
+        <label>
+          passwords:
+          <input
+            type="password"
+            name="password"
+            value={creds.password}
+            onChange={onChange}
+          />
+        </label>
+        <Button type="submit">login</Button>
+      </form>
+    </Label>
+
     //   initialValues={{ username: "", password: "" }}
     //   onSubmit={handleSubmit}
     //   validationSchema={Yup.object().shape({

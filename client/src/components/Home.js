@@ -14,20 +14,17 @@ export const Home = props => {
   require("bootstrap");
   //
   const { push } = useHistory();
-  //
   const dispatch = useDispatch();
   const loggedin = useSelector(state => state.loggedin);
   const [planners, setPlanners] = useState([]);
   const [query, setQuery] = useState("");
-  // console.log(wed);
-  // console.log(planners);
-  //
-  useEffect(() => {
-    dispatch(getData());
-  }, [dispatch]);
-  // console.log(wed);
-  // console.log(planners);
   const wed = useSelector(state => state.data);
+  // console.log(wed);
+
+  useEffect(() => {
+    dispatch(getData(`/api/weddings`));
+  }, [dispatch]);
+
   useEffect(() => {
     var filtered = wed.filter(x => {
       return x.wedding_name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
