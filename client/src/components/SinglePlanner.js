@@ -21,7 +21,7 @@ export const SinglePlanner = ({ match }) => {
   // console.log(plannersData);
   useEffect(() => {
     dispatch(getWeddingData(`/api/weddings/${id}`));
-  }, [dispatch]);
+  }, [plannersInfo, dispatch]);
   console.log(plannersData);
   const useStyles = makeStyles({
     root: {
