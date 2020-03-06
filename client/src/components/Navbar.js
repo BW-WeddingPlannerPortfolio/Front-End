@@ -113,7 +113,7 @@ export const Navbar = () => {
         <div className="carousel-item active">
           <div className="view">
             {/* <!--Video source--> */}
-            <video src={movie} className="video-intro" autoPlay loop muted />
+            {/* <video src={movie} className="video-intro" autoPlay loop muted /> */}
           </div>
         </div>
       </div>
