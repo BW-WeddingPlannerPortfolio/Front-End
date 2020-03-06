@@ -6,13 +6,14 @@ import { NavLink } from "react-router-dom";
 import { getData } from "../actions";
 import { Search } from "./Search";
 import { useDispatch, useSelector } from "react-redux";
-//import SinglePlanner from "./SinglePlanner";
+import { useHistory } from "react-router-dom";
 
 export const Home = props => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
-
+  //
+  const { push } = useHistory();
   //
   const dispatch = useDispatch();
   const loggedin = useSelector(state => state.loggedin);
@@ -77,6 +78,20 @@ export const Home = props => {
                   </NavLink>
                 </li>
               )}
+              <li className="nav-item">
+                <Button
+                  style={{ marginLeft: "30rem" }}
+                  variant="primary"
+                  onClick={() =>
+                    push("/Home") &
+                    localStorage.removeItem("token") &
+                    localStorage.removeItem("CURRENTUSER") &
+                    dispatch({ type: "LOGGED_STATUS", payload: false })
+                  }
+                >
+                  Sign out
+                </Button>
+              </li>
             </ul>
           </div>
         </div>

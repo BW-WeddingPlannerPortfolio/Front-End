@@ -14,7 +14,7 @@ export const EditProfile = props => {
   //
   const img =
     "https://media.moddb.com/images/articles/1/228/227945/34008485-update-blue-square-stam.jpg";
-  const loggedin = useSelector(state => state.loggedin);
+  // const loggedin = useSelector(state => state.loggedin);
   const dispatch = useDispatch();
   const { push } = useHistory();
   const [data, setData] = useState({
@@ -24,8 +24,6 @@ export const EditProfile = props => {
     profile_pic: "",
     email: ""
   });
-  const currentuser = useSelector(state => state.currentuser);
-  // console.log(data);
 
   // const uploadImage = async e => {
   //   const files = e.target.files;
@@ -39,21 +37,23 @@ export const EditProfile = props => {
   //       body: data
   //     }
   //   );
-  //   var file = await res.json();
-  //   setData(...data, { profile_pic: file.secure_url });
+  //   const file = await res.json();
+  //   setData({ ...data, profile_pic: file.secure_url });
   // };
+
+  const currentuser = useSelector(state => state.currentuser);
+  // console.log(data);
 
   const handleChange = e => {
     e.preventDefault();
     setData({ ...data, [e.target.name]: e.target.value });
+    console.log(data);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    // const { history } = this.props;
     dispatch(editData(`/api/planner/${currentuser.id}`, data));
     push("/profile");
-    // window.location.reload(false);
   };
 
   return (
@@ -111,22 +111,21 @@ export const EditProfile = props => {
               onChange={handleChange}
             />
             {/* Upload Image:
-        <div>
-          <input
-            type="file"
-            filename="image"
-            placeholder="Change An Image"
-            onChange={handleChange}
-          />
-          {
-            <img
-              alt="profile "
-              src={data.profile_pic}
-              style={{ height: "50px" }}
-              onChange={uploadImage}
-            />
-          }
-        </div> */}
+             <div>
+              <input
+                type="file"
+                filename="image"
+                placeholder="Change An Image"
+                onChange={uploadImage}
+              />
+              {
+                <img
+                  alt="profile "
+                  src={data.profile_pic}
+                  style={{ height: "50px" }}
+                />
+              }
+            </div> */}
             <div>
               <button style={{ marginLeft: "12rem", color: "green" }}>
                 Submit

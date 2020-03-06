@@ -46,7 +46,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        data: action.payload
+        weddings: action.payload
       };
     case PLANNER_DATA_SUCCESS:
       return {
@@ -76,8 +76,8 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         weddings: {
-          ...state.weddings,
-          weddings: action.payload
+          ...state.weddings
+          // weddings: action.payload
         }
       };
     case "LOGGED_STATUS":
