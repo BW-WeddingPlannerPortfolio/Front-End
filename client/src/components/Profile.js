@@ -39,12 +39,11 @@ export const Profile = props => {
     dispatch(FetchUser(`/api/planners/${currentuser.id}`));
   }, [dispatch]);
 
-  // console.data(currentuser);
-  // console.log(allWeddings);
+  console.log(data);
 
   useEffect(() => {
     dispatch(getWeddingData(`/api/planner/${currentuser.id}/weddings`));
-  }, [data]);
+  }, [data, dispatch]);
   return (
     <div>
       {" "}
@@ -121,18 +120,24 @@ export const Profile = props => {
                   ) : (
                     <img src={data.profile_pic} />
                   )}
-                  <p>
-                    Name: <i style={{ opacity: "0.7" }}>{data.username}</i>
-                  </p>
+                  {loading ? (
+                    <div>fetching your data..</div>
+                  ) : (
+                    <div>
+                      <p>
+                        Name: <i style={{ opacity: "0.7" }}>{data.username}</i>
+                      </p>
 
-                  <p>
-                    Location:{" "}
-                    <i style={{ opacity: "0.7" }}>{data.home_location}</i>
-                  </p>
+                      <p>
+                        Location:{" "}
+                        <i style={{ opacity: "0.7" }}>{data.home_location}</i>
+                      </p>
 
-                  <p>
-                    Email: <i style={{ opacity: "0.7" }}>{data.email}</i>
-                  </p>
+                      <p>
+                        Email: <i style={{ opacity: "0.7" }}>{data.email}</i>
+                      </p>
+                    </div>
+                  )}
 
                   <NavLink to={`/editprofile/${data.id}`}>Edit profile</NavLink>
                   <NavLink to={`/addwedding/${data.id}`}>Add Wedding</NavLink>
@@ -149,6 +154,7 @@ export const Profile = props => {
                       style={{
                         background: "linear-gradient(45deg, black, transparent)"
                       }}
+                      key={myWedding.id}
                     >
                       <p>
                         <span style={{ fontWeight: "bolder" }}>

@@ -16,12 +16,13 @@ import Typography from "@material-ui/core/Typography";
 export const SinglePlanner = ({ match }) => {
   const dispatch = useDispatch();
   const plannersData = useSelector(state => state.plannersData);
+  const loading = useSelector(state => state.loading);
   const id = match.params.id;
-  console.log(plannersData);
+  // console.log(plannersData);
   useEffect(() => {
     dispatch(getWeddingData(`/api/weddings/${id}`));
   }, [dispatch]);
-
+  console.log(plannersData);
   const useStyles = makeStyles({
     root: {
       maxWidth: 500,
@@ -72,7 +73,7 @@ export const SinglePlanner = ({ match }) => {
       <div>
         {plannersData.map(
           user => (
-            <Card className={classes.root}>
+            <Card key={user.id} className={classes.root}>
               <CardActionArea>
                 <CardMedia
                   component="img"
