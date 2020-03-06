@@ -54,7 +54,7 @@ export const SingleInfo = props => {
   const loading = useSelector(state => state.loading);
   useEffect(() => {
     dispatch(PlannersInfo(`/api/planners/${id}`));
-  }, [loading]);
+  }, [dispatch]);
 
   console.log(plannersInfo);
 
@@ -138,7 +138,7 @@ export const SingleInfo = props => {
               )}
             </Typography>
 
-            {!loading &&
+            {!loading ? (
               plannersInfo.weddings.map(job => (
                 <>
                   <CardMedia key={job.id} image={job.wedding_photo} />
@@ -163,7 +163,10 @@ export const SingleInfo = props => {
                     <span style={{ color: "green" }}>{job.description}</span>
                   </Typography>
                 </>
-              ))}
+              ))
+            ) : (
+              <div>hang tight im getting their info..</div>
+            )}
           </CardContent>
         </Collapse>
       </Card>
