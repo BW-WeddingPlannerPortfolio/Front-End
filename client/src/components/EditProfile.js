@@ -74,6 +74,21 @@ export const EditProfile = props => {
             }}
             onSubmit={handleSubmit}
           >
+            Upload Image:
+            <div>
+              <input
+                type="file"
+                placeholder="Change An Image"
+                onChange={uploadImage}
+              />
+              {
+                <img
+                  alt="profile "
+                  src={data.profile_pic}
+                  style={{ height: "50px" }}
+                />
+              }
+            </div>
             Username:
             <input
               style={{ backgroundColor: "lightblue" }}
@@ -110,21 +125,6 @@ export const EditProfile = props => {
               placeholder={currentuser.home_location}
               onChange={handleChange}
             />
-            Upload Image:
-            <div>
-              <input
-                type="file"
-                placeholder="Change An Image"
-                onChange={uploadImage}
-              />
-              {
-                <img
-                  alt="profile "
-                  src={data.profile_pic}
-                  style={{ height: "50px" }}
-                />
-              }
-            </div>
             <div>
               <button style={{ marginLeft: "12rem", color: "green" }}>
                 Submit
