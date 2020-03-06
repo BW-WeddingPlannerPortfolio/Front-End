@@ -49,24 +49,23 @@ class Cloudinary extends React.Component {
   };
 
   handleChange = e => {
-    e.preventDefault();
     this.setState({ ...this.state, [e.target.name]: e.target.value });
   };
 
   handleSubmit = e => {
+    e.preventDefault();
     const { history } = this.props;
     e.preventDefault();
     axiosWithAuth()
       .post("/api/auth/register", this.state)
       .then(res => {
         console.log(res);
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem(
-          "CURRENTUSER",
-          JSON.stringify(res.data.newUser.planner)
-        );
-        history.push("/Profile");
-        window.location.reload(true);
+        // localStorage.setItem("token", res.data.token);
+        // localStorage.setItem(
+        //   "CURRENTUSER",
+        //   JSON.stringify(res.data.newUser.planner)
+        // );
+        history.push("/Login");
       })
       .catch(err => {
         console.log(err);

@@ -7,23 +7,21 @@ import {
   PLANNER_FORM,
   EDIT_DATA_SUCCESS,
   PLANNER_DATA_SUCCESS,
-  DELETE_SUCCESS
+  DELETE_SUCCESS,
+  ALL_DATA_SUCCESS,
+  PLANNERS_INFO_DATA
 } from "../actions";
 // const uuidv4 = require("uuid/v4");
 
 const setid = window.localStorage.getItem("CURRENTUSER");
-
+const user = JSON.parse(setid);
 const initialState = {
-  currentuser: JSON.parse(setid) ?? { id: 3 },
+  currentuser: user ?? { id: 0 },
   loggedin: false,
   planners: [],
-  weddings: {
-    wedding_name: "",
-    wedding_photo: "",
-    theme: "",
-    wedding_location: "",
-    description: ""
-  },
+  plannersInfo: [],
+  plannersData: [],
+  weddings: [],
   loading: true,
   data: [],
   error: {}
@@ -31,28 +29,31 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    // case DATA_START:
-    //   return {
-    //     ...state,
-    //     loading: true
-    //   };
+    case DATA_START:
+      return {
+        ...state,
+        loading: true
+      };
     case DATA_SUCCESS:
+      //return all data at home
       return {
         ...state,
         loading: false,
         planners: action.payload
       };
-    case DELETE_SUCCESS:
+    case PLANNER_DATA_SUCCESS:
+      //single wedding from home
       return {
         ...state,
         loading: false,
-        weddings: action.payload
+        plannersData: action.payload
       };
-    case PLANNER_DATA_SUCCESS:
+    case DELETE_SUCCESS:
+      //data
       return {
         ...state,
         loading: false
-        // data: action.payload
+        // weddings: action.payload
       };
     case EDIT_DATA_SUCCESS:
       return {
@@ -60,11 +61,17 @@ export const reducer = (state = initialState, action) => {
         loading: false
         // planners: action.payload
       };
-    case DATA_SUCCESS_WED:
+    case ALL_DATA_SUCCESS:
       return {
         ...state,
         loading: false,
         data: action.payload
+      };
+    case PLANNERS_INFO_DATA:
+      return {
+        ...state,
+        loading: false,
+        plannersInfo: action.payload
       };
     case DATA_FAILURE:
       return {
@@ -72,14 +79,7 @@ export const reducer = (state = initialState, action) => {
         loading: false,
         data: action.payload
       };
-    case PLANNER_FORM:
-      return {
-        ...state,
-        weddings: {
-          ...state.weddings
-          // weddings: action.payload
-        }
-      };
+
     case "LOGGED_STATUS":
       return {
         ...state,
