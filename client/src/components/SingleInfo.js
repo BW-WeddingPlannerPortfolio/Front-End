@@ -54,7 +54,7 @@ export const SingleInfo = props => {
   const loading = useSelector(state => state.loading);
   useEffect(() => {
     dispatch(PlannersInfo(`/api/planners/${id}`));
-  }, [loading]);
+  }, [loading, plannersInfo]);
 
   console.log(plannersInfo);
 
