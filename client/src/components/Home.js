@@ -6,27 +6,25 @@ import { NavLink } from "react-router-dom";
 import { getData } from "../actions";
 import { Search } from "./Search";
 import { useDispatch, useSelector } from "react-redux";
-//import SinglePlanner from "./SinglePlanner";
+import { useHistory } from "react-router-dom";
 
 export const Home = props => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
-
   //
+  const { push } = useHistory();
   const dispatch = useDispatch();
   const loggedin = useSelector(state => state.loggedin);
   const [planners, setPlanners] = useState([]);
   const [query, setQuery] = useState("");
-  // console.log(wed);
-  // console.log(planners);
-  //
-  useEffect(() => {
-    dispatch(getData());
-  }, [dispatch]);
-  // console.log(wed);
-  // console.log(planners);
   const wed = useSelector(state => state.data);
+  // console.log(wed);
+
+  useEffect(() => {
+    dispatch(getData(`/api/weddings`));
+  }, [dispatch]);
+
   useEffect(() => {
     var filtered = wed.filter(x => {
       return x.wedding_name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
@@ -77,6 +75,20 @@ export const Home = props => {
                   </NavLink>
                 </li>
               )}
+              {/* <li className="nav-item">
+                <Button
+                  style={{ marginLeft: "30rem" }}
+                  variant="primary"
+                  onClick={() =>
+                    push("/Home") &
+                    localStorage.removeItem("token") &
+                    localStorage.removeItem("CURRENTUSER") &
+                    dispatch({ type: "LOGGED_STATUS", payload: false })
+                  }
+                >
+                  Sign out
+                </Button>
+              </li> */}
             </ul>
           </div>
         </div>

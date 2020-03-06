@@ -1,10 +1,8 @@
-import React from "react";
-import { Formik } from "formik";
-import * as Yup from "yup";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FetchUser } from "../actions/";
 import { axiosWithAuth } from "../util/axiosWithAuth";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { FetchUsers } from "../actions";
 import styled from "styled-components";
 
 const Label = styled.div`
@@ -24,105 +22,132 @@ const Button = styled.button`
   margin-left: 20%;
 `;
 export const Login = props => {
-  const history = useHistory();
-
-  // const { push } = useHistory();
   const dispatch = useDispatch();
-  const handleSubmit = (values, { setStatus, resetForm }) => {
-    axiosWithAuth()
-      .post(`/api/auth/login`, values)
+  const { push } = useHistory();
+  const currentuser = useSelector(state => state.currentuser);
+  const [creds, setCreds] = useState({
+    username: "",
+    password: ""
+  });
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    axiosWithAuth()
+      .post(`/api/auth/login`, creds)
       .then(res => {
-        setStatus(res.data);
-        resetForm();
         console.log(res, `success`);
-        // localStorage.setItem("token", res.data.token);
-        // localStorage.setItem("CURRENTUSER", res.config.data);
-        // dispatch({ type: "LOGGED_STATUS", payload: true });
-        // dispatch({ type: "CURRENT_USER", payload: res.config.data });
-        // dispatch(FetchUsers());
-        // history.push("./profile");
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("CURRENTUSER", JSON.stringify(res.data.planner));
+        dispatch({ type: "LOGGED_STATUS", payload: true });
+        dispatch({ type: "CURRENT_USER", payload: res.data.planner });
+        dispatch(FetchUser(`/api/planners/${currentuser.id}`));
+        push("./Profile");
       })
       .catch(err => console.log(err) & alert("Invalid email or Password"))
       .finally();
   };
-  return (
-    <Formik
-      initialValues={{ username: "", password: "" }}
-      onSubmit={handleSubmit}
-      validationSchema={Yup.object().shape({
-        username: Yup.string().required("Required"),
-        password: Yup.string()
-          .required("No password provided.")
-          .min(6, "Password is too short - should be 6 chars minimum.")
-          .matches(/(?=.*[0-9])/, "Password must contain a number.")
-      })}
-    >
-      {props => {
-        const {
-          values,
-          touched,
-          errors,
-          handleChange,
-          handleBlur,
-          handleSubmit
-        } = props;
-        return (
-          <form onSubmit={handleSubmit}>
-            <Label>
-              Username
-              <input
-                className="loginInput"
-                name="username"
-                type="text"
-                placeholder="Enter your username"
-                value={values.username}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                style={{borderRadius: "10px"}}
-              />
-            </Label>
 
-            {errors.username && touched.username && (
-              <span
-                style={{ position: "absolute", top: "70px", left: "70px" }}
-                className="input-feedback"
-              >
-                {errors.username}
-              </span>
-            )}
-            <Label>
-              Password
-              <input
-                className="loginInput"
-                name="password"
-                type="password"
-                placeholder="Enter your password"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                style={{borderRadius: "10px"}}
-              />
-              {errors.password && touched.password && (
-                <span
-                  style={{
-                    position: "absolute",
-                    top: "155px",
-                    right: "-147px",
-                    maxWidth: "1000px",
-                    width: "500px"
-                  }}
-                  className="input-feedback"
-                >
-                  {errors.password}
-                </span>
-              )}
-            </Label>
-            <br />
-            <Button>Login</Button>
-          </form>
-        );
-      }}
-    </Formik>
+  const onChange = e => {
+    setCreds({ ...creds, [e.target.name]: e.target.value });
+  };
+  return (
+    <Label>
+      <form onSubmit={handleSubmit}>
+        <label>
+          username:
+          <input
+            type="text"
+            name="username"
+            value={creds.username}
+            onChange={onChange}
+          />
+        </label>
+        <label>
+          passwords:
+          <input
+            type="password"
+            name="password"
+            value={creds.password}
+            onChange={onChange}
+          />
+        </label>
+        <Button type="submit">login</Button>
+      </form>
+    </Label>
+
+    //   initialValues={{ username: "", password: "" }}
+    //   onSubmit={handleSubmit}
+    //   validationSchema={Yup.object().shape({
+    //     username: Yup.string().required("Required"),
+    //     password: Yup.string()
+    //       .required("No password provided.")
+    //       .min(6, "Password is too short - should be 6 chars minimum.")
+    //       .matches(/(?=.*[0-9])/, "Password must contain a number.")
+    //   })}
+    // >
+    //   {props => {
+    //     const {
+    //       values,
+    //       touched,
+    //       errors,
+    //       handleChange,
+    //       handleBlur,
+    //       handleSubmit
+    //     } = props;
+    //     return (
+    //       <form onSubmit={handleSubmit}>
+    //         <Label>
+    //           Username
+    //           <input
+    //             className="loginInput"
+    //             name="username"
+    //             type="text"
+    //             placeholder="Enter your username"
+    //             value={values.username}
+    //             onChange={handleChange}
+    //             onBlur={handleBlur}
+    //           />
+    //         </Label>
+
+    //         {errors.username && touched.username && (
+    //           <span
+    //             style={{ position: "absolute", top: "70px", left: "70px" }}
+    //             className="input-feedback"
+    //           >
+    //             {errors.username}
+    //           </span>
+    //         )}
+    //         <Label>
+    //           Password
+    //           <input
+    //             className="loginInput"
+    //             name="password"
+    //             type="password"
+    //             placeholder="Enter your password"
+    //             value={values.password}
+    //             onChange={handleChange}
+    //             onBlur={handleBlur}
+    //           />
+    //           {errors.password && touched.password && (
+    //             <span
+    //               style={{
+    //                 position: "absolute",
+    //                 top: "155px",
+    //                 right: "-147px",
+    //                 maxWidth: "1000px",
+    //                 width: "500px"
+    //               }}
+    //               className="input-feedback"
+    //             >
+    //               {errors.password}
+    //             </span>
+    //           )}
+    //         </Label>
+    //         <br />
+    //         <Button>Login</Button>
+    //       </form>
+    //     );
+    //   }}
+    // </Formik>
   );
 };

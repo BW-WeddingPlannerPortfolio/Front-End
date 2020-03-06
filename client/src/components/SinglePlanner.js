@@ -1,19 +1,36 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getData } from "../actions";
+import { getWeddingData } from "../actions";
 import logo from "../assets/images/logo.png";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 
 export const SinglePlanner = ({ match }) => {
   const dispatch = useDispatch();
-  const wed = useSelector(state => state.data);
+  const plannersData = useSelector(state => state.plannersData);
   const id = match.params.id;
-
+  console.log(plannersData);
   useEffect(() => {
-    dispatch(getData());
+    dispatch(getWeddingData(`/api/weddings/${id}`));
   }, [dispatch]);
 
+  const useStyles = makeStyles({
+    root: {
+      maxWidth: 500,
+      height: 300,
+      margin: "0 auto",
+      marginTop: "15rem"
+    }
+  });
+  const classes = useStyles();
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
@@ -47,78 +64,101 @@ export const SinglePlanner = ({ match }) => {
                   Home
                 </NavLink>
               </li>
-              {/* <li className="nav-item">
-              <a className="nav-link">
-                Venues
-                </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link">Dresses</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link">Registry</a>
-            </li> */}
             </ul>
           </div>
         </div>
       </nav>
 
       <div>
-        {wed.map(
-          user =>
-            user.id == id && (
-              <StyledDiv>
-                <StyledH2>{user.wedding_name}</StyledH2>
-                <div>
-                  <StyledImg src={user.wedding_photo} />
-                  <StyledTAL>
-                    <p>Theme - {user.theme}</p>
-                    <p>Location - {user.wedding_location}</p>
-                  </StyledTAL>
-                  <StyledDesc>About - {user.description}</StyledDesc>
-                </div>
-              </StyledDiv>
-            )
+        {plannersData.map(
+          user => (
+            <Card className={classes.root}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  height="340"
+                  image={user.wedding_photo}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {user.wedding_name}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    {user.description}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button size="small" color="primary">
+                  <NavLink to={`/plannersinfo/${user.id}`}>
+                    Learn More about this Planner.
+                  </NavLink>
+                </Button>
+              </CardActions>
+            </Card>
+            // <StyledDiv>
+            //   <StyledH2>{user.wedding_name}</StyledH2>
+            //   <div>
+            //     <StyledImg src={user.wedding_photo} />
+            //     <StyledTAL>
+            //       <p>Theme - {user.theme}</p>
+            //       <p>Location - {user.wedding_location}</p>
+            //     </StyledTAL>
+            //     <StyledDesc>About - {user.description}</StyledDesc>
+            //   </div>
+            //   <NavLink
+            //     style={{ fontSize: "2rem" }}
+            //     to={`/plannersinfo/${user.id}`}
+            //   >
+            //     See all the work they did.
+            //   </NavLink>
+            // </StyledDiv>
+          )
+          // )
         )}
       </div>
     </div>
   );
 };
 
-const StyledDiv = styled.div`
-  display: flex;
-  background-color: #8ec5fc;
-  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
-  justify-content: center;
-  flex-direction: column;
-  height: 100vh;
-  margin: 80px;
-  border-radius: 5px;
-  margin-top: 150px;
-`;
-const StyledH2 = styled.h2`
-  display: flex;
-  justify-content: center;
-  font-size: 30px;
-  width: 100%;
-  margin-top: 20px;
-  padding-top: 40px;
-`;
-const StyledImg = styled.img`
-  display: flex;
-  justify-content: center;
-  width: 40%;
-  height: 50vh;
-  border-radius: 10px;
-  margin: 50px;
-  margin-left: 350px;
-`;
-const StyledDesc = styled.p`
-  padding: 20px;
-  text-direction: center;
-`;
-const StyledTAL = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-`;
+// const StyledDiv = styled.div`
+//   display: flex;
+//   background-color: #8ec5fc;
+//   background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+//   justify-content: center;
+//   flex-direction: column;
+//   height: 100vh;
+//   margin: 80px;
+//   border-radius: 5px;
+//   margin-top: 150px;
+// `;
+// const StyledH2 = styled.h2`
+//   display: flex;
+//   justify-content: center;
+//   font-size: 30px;
+//   width: 100%;
+//   margin-top: 20px;
+//   padding-top: 40px;
+// `;
+// const StyledImg = styled.img`
+//   display: flex;
+//   justify-content: center;
+//   width: 40%;
+//   height: 50vh;
+//   border-radius: 10px;
+//   margin: 50px;
+//   margin-left: 350px;
+// `;
+// const StyledDesc = styled.p`
+//   padding: 20px;
+//   text-direction: center;
+// `;
+// const StyledTAL = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-around;
+// `;
