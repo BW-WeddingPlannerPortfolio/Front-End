@@ -10,7 +10,7 @@ export const EDIT_DATA_SUCCESS = "EDIT_DATA_SUCCESS";
 export const PLANNER_DATA_SUCCESS = "PLANNER_DATA_SUCCESS";
 export const DELETE_SUCCESS = "DELETE_SUCCESS";
 export const getData = () => dispatch => {
-  dispatch({ type: DATA_START });
+  // dispatch({ type: DATA_START });
   axiosWithAuth()
     .get("/api/weddings")
     .then(res => {
@@ -100,7 +100,7 @@ export const editData = (url, data) => dispatch => {
   axiosWithAuth()
     .put(url, data)
     .then(res => {
-      // console.log(res, "edited data");
+      console.log(res, "edited data");
       dispatch({ type: EDIT_DATA_SUCCESS });
     })
     .catch(err => {
@@ -111,12 +111,12 @@ export const editData = (url, data) => dispatch => {
 export const Delete = id => dispatch => {
   dispatch({ type: DATA_START });
   axiosWithAuth()
-    .delete(` /api/weddings/${id}`)
+    .delete(`/api/planner/weddings/${id}`)
     .then(res => {
       console.log(res, "Deleted data");
-      // setTimeout(() => {
-      //   dispatch({ type: DELETE_SUCCESS, payload: res.data });
-      // }, 2500);
+      setTimeout(() => {
+        dispatch({ type: DELETE_SUCCESS, payload: res.data });
+      }, 2500);
     })
     .catch(err => {
       dispatch({ type: DATA_FAILURE, payload: err.response });

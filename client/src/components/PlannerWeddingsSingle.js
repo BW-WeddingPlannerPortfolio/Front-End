@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import { Jumbotron, Button } from "react-bootstrap";
 import { Delete } from "../actions/";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 export const PlannerWeddingsSingle = ({ data }) => {
   const dispatch = useDispatch();
+  const { push } = useHistory();
+  // const del = (id) => {
+  //   dispatch(Delete(data.id))
+  // }
+  // function del(id) {
+  //   dispatch(Delete(id));
+  // }
   return (
     <div>
       <div>
@@ -28,6 +36,8 @@ export const PlannerWeddingsSingle = ({ data }) => {
             <Button
               onClick={() => {
                 console.log(data.id);
+                dispatch(Delete(data.id));
+                push("/Home");
                 // TODO: delete on click
                 // TODO: delete action is commented out for now
               }}

@@ -2,38 +2,45 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/images/logo.png";
-import { FetchUsers, getWeddingData, Delete } from "../actions/";
+import { FetchUsers, getWeddingData } from "../actions/";
 import "./Profile.css";
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter
-} from "@bootstrap-styled/v4";
-import Alert from "@bootstrap-styled/v4/lib/Alert";
-import Button from "@material-ui/core/Button";
+import { Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+
+// import {
+//   Modal,
+//   ModalHeader,
+//   ModalBody,
+//   ModalFooter
+// } from "@bootstrap-styled/v4";
+// import Alert from "@bootstrap-styled/v4/lib/Alert";
+// import Button from "@material-ui/core/Button";
 //
 export const Profile = props => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
   //
+  const { push } = useHistory();
+  //
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   //
-  const loading = useSelector(state => state.loading);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(FetchUsers(`/api/planners`));
-  }, [loading, dispatch]);
   const allWeddings = useSelector(state => state.data);
   const currentuser = useSelector(state => state.currentuser);
   const data = useSelector(state => state.planners);
-  console.log(allWeddings);
+  const loading = useSelector(state => state.loading);
+  const update = useSelector(state => state.weddings);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(FetchUsers(`/api/planners`));
+  }, [update, allWeddings, dispatch]);
+
+  // console.log(allWeddings);
 
   useEffect(() => {
     dispatch(getWeddingData(currentuser.id));
-  }, [loading, dispatch]);
+  }, [update, allWeddings, dispatch]);
   return (
     <div>
       {" "}
@@ -72,6 +79,20 @@ export const Profile = props => {
                 <NavLink to="./profile" className="nav-link">
                   Profile
                 </NavLink>
+              </li>
+              <li className="nav-item">
+                <Button
+                  style={{ marginLeft: "30rem" }}
+                  variant="primary"
+                  onClick={() =>
+                    push("/") &
+                    localStorage.removeItem("token") &
+                    localStorage.removeItem("CURRENTUSER") &
+                    dispatch({ type: "LOGGED_STATUS", payload: false })
+                  }
+                >
+                  Sign out
+                </Button>
               </li>
             </ul>
           </div>
