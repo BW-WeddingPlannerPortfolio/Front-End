@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
+import { useDispatch, useSelector } from "react-redux";
 import logo from "../assets/images/logo.png";
 import movie from "../assets/wed.mp4";
 import { NavLink } from "react-router-dom";
@@ -8,6 +9,10 @@ import Cloudinary from "./SignUp";
 import { Login } from "./Login";
 
 export const Navbar = () => {
+  const loggedin = useSelector(state => state.loggedin);
+  // const currentuser = useSelector(state => state.currentuser);
+  useEffect(() => {}, [loggedin]);
+  const dispatch = useDispatch();
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
@@ -51,30 +56,49 @@ export const Navbar = () => {
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <a className="nav-link">Venues</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link">Dresses</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link">Registry</a>
-              </li>
+              {loggedin && (
+                <li className="nav-item active">
+                  <NavLink to="./profile" className="nav-link">
+                    Profile
+                  </NavLink>
+                </li>
+              )}
             </ul>
 
             {/* <!-- Right --> */}
-            <ul className="navbar-nav nav-flex-icons">
-              <li className="nav-item">
-                <Button variant="primary" onClick={handleShowLogin}>
-                  Login
-                </Button>
-              </li>
 
-              <li className="nav-item">
-                <Button variant="primary" onClick={handleShow}>
-                  Join Now
-                </Button>
-              </li>
+            <ul className="navbar-nav nav-flex-icons">
+              {!loggedin ? (
+                <>
+                  <li className="nav-item">
+                    <Button variant="primary" onClick={handleShowLogin}>
+                      Login
+                    </Button>
+                  </li>
+
+                  <li className="nav-item">
+                    <Button variant="primary" onClick={handleShow}>
+                      Join Now
+                    </Button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  (
+                  <li className="nav-item">
+                    <Button
+                      variant="primary"
+                      onClick={() =>
+                        localStorage.removeItem("token") &
+                        localStorage.removeItem("CURRENTUSER") &
+                        dispatch({ type: "LOGGED_STATUS", payload: false })
+                      }
+                    >
+                      Sign out
+                    </Button>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>
@@ -88,7 +112,6 @@ export const Navbar = () => {
         {/* <!--First slide--> */}
         <div className="carousel-item active">
           <div className="view">
-            <h1 className="text"></h1>
             {/* <!--Video source--> */}
             <video src={movie} className="video-intro" autoPlay loop muted />
           </div>
@@ -106,9 +129,9 @@ export const Navbar = () => {
 
       <Modal show={showLogin} onHide={handleCloseLogin}>
         <Modal.Header closeButton>
-          <Modal.Title>SIGN IN</Modal.Title>
+          <Modal.Title>Login</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ height: "50vh", margin: "10px"}}>
+        <Modal.Body style={{ height: "50vh", margin: "10px" }}>
           <Login />
         </Modal.Body>
       </Modal>

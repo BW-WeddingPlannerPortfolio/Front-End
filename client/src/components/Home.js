@@ -6,15 +6,17 @@ import { NavLink } from "react-router-dom";
 import { getData } from "../actions";
 import { Search } from "./Search";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-export const Home = () => {
+export const Home = props => {
   window.$ = window.jQuery = require("jquery");
   window.Popper = require("popper.js").default;
   require("bootstrap");
-
+  //
+  const { push } = useHistory();
   //
   const dispatch = useDispatch();
-  const wed = useSelector(state => state.data);
+  const loggedin = useSelector(state => state.loggedin);
   const [planners, setPlanners] = useState([]);
   const [query, setQuery] = useState("");
   // console.log(wed);
@@ -22,21 +24,20 @@ export const Home = () => {
   //
   useEffect(() => {
     dispatch(getData());
-    setPlanners(wed);
   }, [dispatch]);
   // console.log(wed);
   // console.log(planners);
-
+  const wed = useSelector(state => state.data);
   useEffect(() => {
     var filtered = wed.filter(x => {
       return x.wedding_name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
     });
     setPlanners(filtered);
-  }, [query]);
+  }, [wed, query]);
   const handleInput = e => {
     setQuery(e.target.value);
   };
-  // console.log(planners);
+
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
@@ -70,14 +71,26 @@ export const Home = () => {
                   Home
                 </NavLink>
               </li>
+              {loggedin && (
+                <li className="nav-item active">
+                  <NavLink to="./profile" className="nav-link">
+                    Profile
+                  </NavLink>
+                </li>
+              )}
               <li className="nav-item">
-                <a className="nav-link">Venues</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link">Dresses</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link">Registry</a>
+                <Button
+                  style={{ marginLeft: "30rem" }}
+                  variant="primary"
+                  onClick={() =>
+                    push("/Home") &
+                    localStorage.removeItem("token") &
+                    localStorage.removeItem("CURRENTUSER") &
+                    dispatch({ type: "LOGGED_STATUS", payload: false })
+                  }
+                >
+                  Sign out
+                </Button>
               </li>
             </ul>
           </div>
@@ -109,7 +122,7 @@ export const Home = () => {
                   <Card.Title>{x.wedding_name}</Card.Title>
                   <Card.Text>{x.description}</Card.Text>
                   <NavLink to={`/${x.id}`}>
-                    <Button variant="primary">Go somewhere</Button>
+                    <Button variant="primary">Planner</Button>
                   </NavLink>
                 </Card.Body>
               </Card>

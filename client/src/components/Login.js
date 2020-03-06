@@ -7,41 +7,41 @@ import { useDispatch } from "react-redux";
 import { FetchUsers } from "../actions";
 import styled from "styled-components";
 
-const Label = styled.div`  
-display: flex;
-flex-direction: column;
-margin: 1rem auto;
-padding: 1rem;
-width: 80%;
-background: #00A3FF;
-box-shadow: 0px 0px 24px rgba(0, 163, 255, 0.2);
-border-radius: 20px;
-`
+const Label = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 80%;
+  background: #00a3ff;
+  box-shadow: 0px 0px 24px rgba(0, 163, 255, 0.2);
+  border-radius: 20px;
+`;
 
 const Button = styled.button`
-width: 55%;
-margin: auto;
-margin-left: 20%;
-`
+  width: 55%;
+  margin: auto;
+  margin-left: 20%;
+`;
 export const Login = props => {
+  const history = useHistory();
+
   // const { push } = useHistory();
   const dispatch = useDispatch();
   const handleSubmit = (values, { setStatus, resetForm }) => {
-    axiosWithAuth
+    axiosWithAuth()
       .post(`/api/auth/login`, values)
 
       .then(res => {
-        // setStatus(res.data);
+        setStatus(res.data);
         resetForm();
         console.log(res, `success`);
         // localStorage.setItem("token", res.data.token);
-        // localStorage.setItem("CURRENTUSER", JSON.stringify(res.data));
-
+        // localStorage.setItem("CURRENTUSER", res.config.data);
         // dispatch({ type: "LOGGED_STATUS", payload: true });
-        // dispatch({ type: "CURRENT_USER", payload: res.data });
-
-        dispatch(FetchUsers());
-        // push(`/Home`);
+        // dispatch({ type: "CURRENT_USER", payload: res.config.data });
+        // dispatch(FetchUsers());
+        // history.push("./profile");
       })
       .catch(err => console.log(err) & alert("Invalid email or Password"))
       .finally();
@@ -63,7 +63,6 @@ export const Login = props => {
           values,
           touched,
           errors,
-          isSubmitting,
           handleChange,
           handleBlur,
           handleSubmit
@@ -72,18 +71,17 @@ export const Login = props => {
           <form onSubmit={handleSubmit}>
             <Label>
               Username
-            
-            <input
-              className="loginInput"
-              name="username"
-              type="text"
-              placeholder="Enter your username"
-              value={values.username}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
+              <input
+                className="loginInput"
+                name="username"
+                type="text"
+                placeholder="Enter your username"
+                value={values.username}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
             </Label>
-            {console.log(values, "values")}
+
             {errors.username && touched.username && (
               <span
                 style={{ position: "absolute", top: "70px", left: "70px" }}
@@ -94,35 +92,32 @@ export const Login = props => {
             )}
             <Label>
               Password
-            
-            <input
-              className="loginInput"
-              name="password"
-              type="password"
-              placeholder="Enter your password"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {errors.password && touched.password && (
-              <span
-                style={{
-                  position: "absolute",
-                  top: "155px",
-                  right: "-147px",
-                  maxWidth: "1000px",
-                  width: "500px"
-                }}
-                className="input-feedback"
-              >
-                {errors.password}
-              </span>
-            )}
+              <input
+                className="loginInput"
+                name="password"
+                type="password"
+                placeholder="Enter your password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.password && touched.password && (
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "155px",
+                    right: "-147px",
+                    maxWidth: "1000px",
+                    width: "500px"
+                  }}
+                  className="input-feedback"
+                >
+                  {errors.password}
+                </span>
+              )}
             </Label>
             <br />
-            <Button>
-              Login
-            </Button>
+            <Button>Login</Button>
           </form>
         );
       }}
