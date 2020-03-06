@@ -25,21 +25,21 @@ export const EditProfile = props => {
     email: ""
   });
 
-  // const uploadImage = async e => {
-  //   const files = e.target.files;
-  //   const data = new FormData();
-  //   data.append("file", files[0]);
-  //   data.append("upload_preset", "upload");
-  //   const res = await fetch(
-  //     "	https://api.cloudinary.com/v1_1/takija/image/upload",
-  //     {
-  //       method: "POST",
-  //       body: data
-  //     }
-  //   );
-  //   const file = await res.json();
-  //   setData({ ...data, profile_pic: file.secure_url });
-  // };
+  const uploadImage = async e => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "upload");
+    const res = await fetch(
+      "	https://api.cloudinary.com/v1_1/takija/image/upload",
+      {
+        method: "POST",
+        body: data
+      }
+    );
+    const file = await res.json();
+    setData({ ...data, profile_pic: file.secure_url });
+  };
 
   const currentuser = useSelector(state => state.currentuser);
   // console.log(data);
@@ -110,11 +110,10 @@ export const EditProfile = props => {
               placeholder={currentuser.home_location}
               onChange={handleChange}
             />
-            {/* Upload Image:
-             <div>
+            Upload Image:
+            <div>
               <input
                 type="file"
-                filename="image"
                 placeholder="Change An Image"
                 onChange={uploadImage}
               />
@@ -125,7 +124,7 @@ export const EditProfile = props => {
                   style={{ height: "50px" }}
                 />
               }
-            </div> */}
+            </div>
             <div>
               <button style={{ marginLeft: "12rem", color: "green" }}>
                 Submit

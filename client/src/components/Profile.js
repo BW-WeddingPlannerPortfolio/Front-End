@@ -44,7 +44,7 @@ export const Profile = props => {
 
   useEffect(() => {
     dispatch(getWeddingData(`/api/planner/${currentuser.id}/weddings`));
-  }, [dispatch]);
+  }, [data]);
   return (
     <div>
       {" "}
