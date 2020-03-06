@@ -78,7 +78,7 @@ export const Home = props => {
                   </NavLink>
                 </li>
               )}
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Button
                   style={{ marginLeft: "30rem" }}
                   variant="primary"
@@ -91,7 +91,7 @@ export const Home = props => {
                 >
                   Sign out
                 </Button>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
